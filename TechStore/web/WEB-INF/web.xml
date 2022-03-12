@@ -4,9 +4,17 @@
         <servlet-name>TestServ</servlet-name>
         <servlet-class>com.store.TestServ</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>salma</servlet-name>
+        <servlet-class>com.store.salma</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestServ</servlet-name>
         <url-pattern>/TestServ</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>salma</servlet-name>
+        <url-pattern>/salma</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
