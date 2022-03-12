@@ -1,0 +1,6 @@
+MONGODB_ADDON_HOST=bduflpk9sfmbcnm-mongodb.services.clever-cloud.com
+MONGODB_ADDON_DB=bduflpk9sfmbcnm
+MONGODB_ADDON_USER=ueeyytqojzrlrj9jxojy
+MONGODB_ADDON_PORT=27017
+MONGODB_ADDON_PASSWORD=Mily4gQEwvGZd17RPvfc
+MONGODB_ADDON_URI=mongodb://ueeyytqojzrlrj9jxojy:Mily4gQEwvGZd17RPvfc@bduflpk9sfmbcnm-mongodb.services.clever-cloud.com:27017/bduflpk9sfmbcnm
