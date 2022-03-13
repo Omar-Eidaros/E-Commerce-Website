@@ -27,7 +27,7 @@
                 <label for="category">Category</label>
                 <select id="category" name="category">
                     <option value="phone">Phone</option>
-                    <option value="laptop">Laptop</option>
+                    <option value="laptob">laptob</option>
                 </select>
             </div><!-- End .form-group -->
 
