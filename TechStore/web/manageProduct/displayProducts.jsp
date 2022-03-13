@@ -33,7 +33,7 @@
         
         
         %>
-        <img src="data:image/gif;base64,+<%= p.getBase64Image()%>+"/>
+        <img src="data:image/gif;base64,<%= p.getBase64Image()%> "/>
         <h1>quantity :  <%= p.getQuantity()%> </h1>
         <% }%>
 
