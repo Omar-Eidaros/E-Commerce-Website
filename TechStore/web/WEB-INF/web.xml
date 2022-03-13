@@ -8,13 +8,26 @@
         <servlet-name>salma</servlet-name>
         <servlet-class>com.store.salma</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HandleInitServer</servlet-name>
+        <servlet-class>com.store.HandleInitServer</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>validateAddProduct</servlet-name>
+        <servlet-class>handleValidationToDB.validateAddProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TestServ</servlet-name>
         <url-pattern>/TestServ</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>salma</servlet-name>
-        <url-pattern>/salma</url-pattern>
+        <servlet-name>HandleInitServer</servlet-name>
+        <url-pattern>/HandleInitServer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateAddProduct</servlet-name>
+        <url-pattern>/validateAddProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
