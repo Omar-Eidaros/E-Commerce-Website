@@ -73,9 +73,7 @@ public class productManaging {
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
 
-                Blob blob = res.getBlob("image");
-
-                InputStream inputStream = blob.getBinaryStream();
+                InputStream inputStream = res.getBinaryStream("image");
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
                 int bytesRead = -1;
@@ -92,8 +90,11 @@ public class productManaging {
 
         } catch (SQLException e) {
             //return new MessageFromDB(false, "please try again");
+System.err.println(e);
         } catch (Exception e) {
             e.printStackTrace();
+System.err.println(e);
+
             //return new MessageFromDB(false, "please try again");
         }
         return products;
