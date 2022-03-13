@@ -22,13 +22,17 @@ public class DataHandling {
 
     public static void startConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.postgresql.Driver");
-        DriverManager.getConnection(DataHandling.dataBaseUrl, DataHandling.userName, DataHandling.dataBasePassword);
+        connection = DriverManager.getConnection(DataHandling.dataBaseUrl, DataHandling.userName, DataHandling.dataBasePassword);
         System.out.println("successfully connected");
     }
 
     public static void closeConnection() throws SQLException {
         DataHandling.connection.close();
         DataHandling.connection = null;
+    }
+
+    public static Connection getConnection() {
+        return connection;
     }
 
 }
