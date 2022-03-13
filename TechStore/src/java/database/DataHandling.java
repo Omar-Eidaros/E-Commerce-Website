@@ -24,6 +24,7 @@ public class DataHandling {
         Class.forName("org.postgresql.Driver");
         connection = DriverManager.getConnection(DataHandling.dataBaseUrl, DataHandling.userName, DataHandling.dataBasePassword);
         System.out.println("successfully connected");
+
     }
 
     public static void closeConnection() throws SQLException {
