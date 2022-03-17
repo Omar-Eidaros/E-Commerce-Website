@@ -5,10 +5,6 @@
         <listener-class>com.store.handleListenerContext</listener-class>
     </listener>
     <servlet>
-        <servlet-name>TestServ</servlet-name>
-        <servlet-class>com.store.TestServ</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>salma</servlet-name>
         <servlet-class>com.store.salma</servlet-class>
     </servlet>
@@ -29,10 +25,10 @@
         <servlet-name>validateSearchProduct</servlet-name>
         <servlet-class>handleValidationToDB.validateSearchProduct</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>TestServ</servlet-name>
-        <url-pattern>/TestServ</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>validateUserLogin</servlet-name>
+        <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HandleInitServer</servlet-name>
         <url-pattern>/HandleInitServer</url-pattern>
@@ -48,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>validateSearchProduct</servlet-name>
         <url-pattern>/validateSearchProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateUserLogin</servlet-name>
+        <url-pattern>/validateUserLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

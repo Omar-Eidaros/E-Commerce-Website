@@ -6,22 +6,15 @@ package database;
 
 import com.mongodb.*;
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.model.Projections;
-import com.mongodb.MongoClient;
-import java.text.DateFormat;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
-
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 /**
  *
  * @author Omar Samir
