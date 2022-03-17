@@ -22,4 +22,9 @@ public class MessageFromDB {
         return new MessageFromDB(status, message);
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+    
+    
 }

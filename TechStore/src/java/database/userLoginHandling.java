@@ -21,7 +21,7 @@ public class userLoginHandling {
         try {
             String mail = "";
             String pass = "";
-            PreparedStatement stmt = connection.prepareStatement("SELECT username,email FROM \"public\".users;");
+            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM \"public\".users;");
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 mail = res.getString(1);

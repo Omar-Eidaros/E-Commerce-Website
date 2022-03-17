@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.User;
 import database.userLoginHandling;
+import database.MessageFromDB;
 import java.sql.SQLException;
 
 /**
@@ -19,11 +20,11 @@ import java.sql.SQLException;
  * @author Omar Samir
  */
 public class validateUserLogin extends HttpServlet {
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         PrintWriter out = response.getWriter();
         userLoginHandling ulh = new userLoginHandling();
         User account = new User();
@@ -34,9 +35,14 @@ public class validateUserLogin extends HttpServlet {
             account.setPassword(request.getParameter("singin-password"));
         }
         try {
-            ulh.checkLogin(account);
+            MessageFromDB ms = ulh.checkLogin(account);
+            if (ms.getStatus()) {
+                response.sendRedirect("HomePage.html");
+            } else {
+                response.sendRedirect("ManageUser/userLogin.jsp");
+            }
         } catch (SQLException ex) {
         }
     }
-
+    
 }
