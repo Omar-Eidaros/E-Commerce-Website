@@ -31,11 +31,23 @@ public class MongoDBHandler {
 
     public static void connectDB() {
 
-        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
-        MongoClient mongoClient = new MongoClient(connectionString);
-        CodecRegistry pojoCodecRegistry = org.bson.codecs.configuration.CodecRegistries.fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), org.bson.codecs.configuration.CodecRegistries.fromProviders(PojoCodecProvider.builder().automatic(true).build()));
-        MongoDatabase db = mongoClient.getDatabase("TechStore").withCodecRegistry(pojoCodecRegistry);
-        collection = db.getCollection("Order", Order.class);
+// Creating a Mongo client 
+      MongoClient mongo = new MongoClient( "localhost" , 27017 ); 
+   
+      // Creating Credentials 
+      MongoCredential credential; 
+      credential = MongoCredential.createCredential("nora", "newDB", 
+         "1234".toCharArray()); 
+      System.out.println("Connected to the database successfully");  
+      
+      // Accessing the database 
+      MongoDatabase database = mongo.getDatabase("newDB"); 
+      System.out.println("Credentials ::"+ credential);
+      
+      //Creating a collection 
+      database.createCollection("sampleCollection"); 
+      System.out.println("Collection created successfully"); 
+
     }
 
     public static List<Order> retriveOneProduct(BasicDBObject query) {

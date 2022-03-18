@@ -5,6 +5,7 @@
 package com.store;
 
 import database.DataHandling;
+import database.MongoDBHandler;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ public class HandleInitServer extends HttpServlet {
     public void init() {
         try {
             DataHandling.startConnection();
+MongoDBHandler.connectDB();
         } catch (Exception e) {
             System.out.println(e+" : error to start connection");
         }
