@@ -1,0 +1,29 @@
+.reg{
+    height:1050px
+
+}
+
+.form_wrap.select_box {
+			display: flex;
+            justify-content: space-around;
+
+		}
+
+ .city{
+            width: 34%;
+
+        }
+
+.street{
+    width: 65%;
+}
+
+	input[type="checkbox"] {
+			margin-right: 9px;
+			margin-top: 2px
+		}
+
+.error{
+    color: red;
+    visibility: hidden;
+}
