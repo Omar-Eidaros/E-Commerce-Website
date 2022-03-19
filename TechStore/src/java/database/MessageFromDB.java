@@ -25,6 +25,10 @@ public class MessageFromDB {
     public Boolean getStatus() {
         return status;
     }
+
+    public String getMessage() {
+        return message;
+    }
     
     
 }

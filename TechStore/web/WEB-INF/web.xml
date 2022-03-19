@@ -22,10 +22,6 @@
         <servlet-class>handleValidationToDB.validateDeleteProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>validateSearchProduct</servlet-name>
-        <servlet-class>handleValidationToDB.validateSearchProduct</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>validateUserLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
     </servlet>
@@ -40,10 +36,6 @@
     <servlet-mapping>
         <servlet-name>validateDeleteProduct</servlet-name>
         <url-pattern>/validateDeleteProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>validateSearchProduct</servlet-name>
-        <url-pattern>/validateSearchProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>validateUserLogin</servlet-name>

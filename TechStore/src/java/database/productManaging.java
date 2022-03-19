@@ -116,20 +116,19 @@ public class productManaging {
     // search product 
     public Vector<Product> searchProduct(int priceFrom, int priceTo, String category) throws SQLException {
         Vector<Product> products = new Vector<Product>();
-        
+
         try {
             PreparedStatement stmt;
             
-            if (category.equalsIgnoreCase("all") && priceFrom != -1 && priceTo != -1) {
+            if (!category.equalsIgnoreCase("all") && priceFrom != -1 && priceTo != -1) {
                 stmt = conn.prepareStatement("select * from products where (price between ? and ?) and category = ? ");
 //                stmt.setInt(1, priceFrom);
 //                stmt.setInt(2, priceTo);
                 stmt.setObject(1, priceFrom, Types.OTHER);
                 stmt.setObject(2, priceTo, Types.OTHER);
                 
-                stmt.setObject(3, category, Types.OTHER);
-                
-            } else if (category.equalsIgnoreCase("all")) {
+                stmt.setObject(3, category, Types.OTHER);                
+            } else if (!category.equalsIgnoreCase("all")) {
                 stmt = conn.prepareStatement("select * from products where category = ? ");
                 stmt.setObject(1, category, Types.OTHER);
                 
@@ -139,6 +138,7 @@ public class productManaging {
                 stmt.setObject(2, priceTo, Types.OTHER);
             } else {
                 stmt = conn.prepareStatement("select * from products");
+
             }
             
             ResultSet res = stmt.executeQuery();

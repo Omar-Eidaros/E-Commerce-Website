@@ -23,7 +23,7 @@ public class HandleInitServer extends HttpServlet {
     public void init() {
         try {
             DataHandling.startConnection();
-MongoDBHandler.connectDB();
+            MongoDBHandler.connectDB();
         } catch (Exception e) {
             System.out.println(e+" : error to start connection");
         }
