@@ -4,6 +4,7 @@
  */
 package handleValidationToDB;
 
+import database.MessageFromDB;
 import database.productManaging;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,10 +30,13 @@ public class validateDeleteProduct extends HttpServlet {
             String id = request.getParameter("id");
             System.out.println(id);
             if (id != null && !id.isEmpty()) {
-                PM.deleteProduct(Integer.parseInt(id));
-                out.println("done");
+               MessageFromDB res =  PM.deleteProduct(Integer.parseInt(id));
+//                out.println("done");
+            response.sendRedirect("admin/response.jsp?resMessage="+res.getMessage()+"&resStatus="+res.getStatus());
+
             } else {
-                out.println("erroe");
+            response.sendRedirect("admin/response.jsp?resMessage=error&resStatus=false");
+
             }
         } catch (Exception e) {
             System.out.println(e);

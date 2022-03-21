@@ -4,6 +4,7 @@
  */
 package handleValidationToDB;
 
+import database.MessageFromDB;
 import database.Product;
 import database.productManaging;
 import java.io.IOException;
@@ -36,8 +37,9 @@ public class validateAddProduct extends HttpServlet {
             
             Product product = new Product(request.getParameter("productname"), request.getParameter("description"), Integer.parseInt(request.getParameter("price")), request.getParameter("category"), inputStream, Integer.parseInt(request.getParameter("quantity")));
             
-            PM.addProduct(product);
-            response.sendRedirect("manageProduct/displayProducts.jsp");
+            MessageFromDB res = PM.addProduct(product);
+            response.sendRedirect("admin/response.jsp?resMessage="+res.getMessage()+"&resStatus="+res.getStatus());
+
             
         } catch (Exception e) {
             System.out.println(e + " : error at validate add product");
