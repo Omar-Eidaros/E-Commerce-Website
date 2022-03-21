@@ -5,6 +5,10 @@
         <listener-class>com.store.handleListenerContext</listener-class>
     </listener>
     <servlet>
+        <servlet-name>NewServlet</servlet-name>
+        <servlet-class>com.mycompany.techstore2.NewServlet</servlet-class>
+    </servlet>    
+    <servlet>
         <servlet-name>HandleInitServer</servlet-name>
         <servlet-class>com.store.HandleInitServer</servlet-class>
         <load-on-startup>0</load-on-startup>
@@ -21,6 +25,10 @@
         <servlet-name>validateUserLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>NewServlet</servlet-name>
+        <url-pattern>/NewServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HandleInitServer</servlet-name>
         <url-pattern>/HandleInitServer</url-pattern>
