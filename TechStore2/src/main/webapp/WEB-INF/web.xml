@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>com.mycompany.techstore2.NewServlet</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet>
         <servlet-name>HandleInitServer</servlet-name>
         <servlet-class>com.store.HandleInitServer</servlet-class>
@@ -18,12 +18,20 @@
         <servlet-class>handleValidationToDB.validateAddProduct</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>validateEditProduct</servlet-name>
+        <servlet-class>handleValidationToDB.validateEditProduct</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>validateDeleteProduct</servlet-name>
         <servlet-class>handleValidationToDB.validateDeleteProduct</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>validateUserLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validateDisplayProduct</servlet-name>
+        <servlet-class>handleValidationToDB.validateDisplayProduct</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -38,12 +46,20 @@
         <url-pattern>/validateAddProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>validateEditProduct</servlet-name>
+        <url-pattern>/validateEditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>validateDeleteProduct</servlet-name>
         <url-pattern>/validateDeleteProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>validateUserLogin</servlet-name>
         <url-pattern>/validateUserLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateDisplayProduct</servlet-name>
+        <url-pattern>/validateDisplayProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

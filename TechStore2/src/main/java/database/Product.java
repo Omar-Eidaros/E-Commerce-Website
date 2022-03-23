@@ -30,6 +30,16 @@ public class Product {
         this.quantity = quantity;
     }
 
+
+    public Product(int productid, String productname, String description, int price, String category, int quantity) {
+        this.productid = productid;
+        this.productname = productname;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+    }
+
     public Product(int productid, String productname, String description, int price, String category, InputStream image, int quantity) {
         this.productid = productid;
         this.productname = productname;
