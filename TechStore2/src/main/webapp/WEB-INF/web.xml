@@ -7,7 +7,7 @@
     <servlet>
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>com.mycompany.techstore2.NewServlet</servlet-class>
-    </servlet>    
+    </servlet>
     <servlet>
         <servlet-name>HandleInitServer</servlet-name>
         <servlet-class>com.store.HandleInitServer</servlet-class>
@@ -24,6 +24,10 @@
     <servlet>
         <servlet-name>validateUserLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validateAdminLogin</servlet-name>
+        <servlet-class>handleValidationToDB.validateAdminLogin</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -44,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>validateUserLogin</servlet-name>
         <url-pattern>/validateUserLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateAdminLogin</servlet-name>
+        <url-pattern>/validateAdminLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

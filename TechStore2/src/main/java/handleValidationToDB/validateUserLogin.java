@@ -37,12 +37,11 @@ public class validateUserLogin extends HttpServlet {
         try {
             MessageFromDB ms = ulh.checkLogin(account);
             if (ms.getStatus()) {
-                response.sendRedirect("HomePage.html");
+                response.sendRedirect("index.html");
             } else {
-                response.sendRedirect("ManageUser/userLogin.jsp");
+                response.sendRedirect("errorlogin.html");
             }
         } catch (SQLException ex) {
         }
     }
-    
 }

@@ -4,6 +4,9 @@
  */
 package database;
 
+import database.DataHandling;
+import database.MessageFromDB;
+import database.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

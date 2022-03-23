@@ -11,15 +11,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.bson-3.12.10.jar}</file>
+                    <file>${file.reference.bson-3.12.10.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.mongodb-driver-3.12.10.jar}</file>
+                    <file>${file.reference.mongodb-driver-3.12.10.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${file.reference.mongodb-driver-core-3.12.10.jar}</file>
+                    <file>${file.reference.mongodb-driver-core-3.12.10.jar-1}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
