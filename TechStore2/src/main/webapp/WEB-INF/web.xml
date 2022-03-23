@@ -18,6 +18,10 @@
         <servlet-class>handleValidationToDB.validateAddProduct</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>validateEditProduct</servlet-name>
+        <servlet-class>handleValidationToDB.validateEditProduct</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>validateDeleteProduct</servlet-name>
         <servlet-class>handleValidationToDB.validateDeleteProduct</servlet-class>
     </servlet>
@@ -26,8 +30,13 @@
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>validateAdminLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateAdminLogin</servlet-class>
+=======
+        <servlet-name>validateDisplayProduct</servlet-name>
+        <servlet-class>handleValidationToDB.validateDisplayProduct</servlet-class>
+>>>>>>> 87bfeb8e53121004b3d054b0da998b22d4304233
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -42,6 +51,10 @@
         <url-pattern>/validateAddProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>validateEditProduct</servlet-name>
+        <url-pattern>/validateEditProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>validateDeleteProduct</servlet-name>
         <url-pattern>/validateDeleteProduct</url-pattern>
     </servlet-mapping>
@@ -50,8 +63,13 @@
         <url-pattern>/validateUserLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>validateAdminLogin</servlet-name>
         <url-pattern>/validateAdminLogin</url-pattern>
+=======
+        <servlet-name>validateDisplayProduct</servlet-name>
+        <url-pattern>/validateDisplayProduct</url-pattern>
+>>>>>>> 87bfeb8e53121004b3d054b0da998b22d4304233
     </servlet-mapping>
     <session-config>
         <session-timeout>
