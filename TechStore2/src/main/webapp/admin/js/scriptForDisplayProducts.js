@@ -11,7 +11,7 @@ window.onload = getProductsBasedOnUrl;
 
 
 function getProductsBasedOnUrl() {
-
+    loading();
     queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let valueMin = urlParams.get('min') || 20;
@@ -30,6 +30,7 @@ function getProductsBasedOnUrl() {
 // to get data product 
 
 function getQueryFromSearch() {
+    loading();
 //    e.preventdefault();
 // Get the form
     let form = document.getElementById('searchForm');
@@ -130,3 +131,10 @@ var card = (data) => {
     return x;
 }
 
+
+function loading()
+{
+    document.getElementById("contain-all-cards").innerHTML = "";
+    document.getElementById("contain-all-cards").innerHTML = "<div style='width: 100% ;text-align: center;margin: 32px;font-size: 50px;font-weight: 600'> loading.......</div>";
+
+} 

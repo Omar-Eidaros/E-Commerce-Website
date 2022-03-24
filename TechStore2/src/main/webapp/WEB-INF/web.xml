@@ -30,13 +30,16 @@
         <servlet-class>handleValidationToDB.validateUserLogin</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>validateAdminLogin</servlet-name>
         <servlet-class>handleValidationToDB.validateAdminLogin</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>validateDisplayProduct</servlet-name>
         <servlet-class>handleValidationToDB.validateDisplayProduct</servlet-class>
->>>>>>> 87bfeb8e53121004b3d054b0da998b22d4304233
+    </servlet>
+    <servlet>
+        <servlet-name>validateDisplayUsers</servlet-name>
+        <servlet-class>handleValidationToDB.validateDisplayUsers</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -63,13 +66,16 @@
         <url-pattern>/validateUserLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>validateAdminLogin</servlet-name>
         <url-pattern>/validateAdminLogin</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>validateDisplayProduct</servlet-name>
         <url-pattern>/validateDisplayProduct</url-pattern>
->>>>>>> 87bfeb8e53121004b3d054b0da998b22d4304233
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateDisplayUsers</servlet-name>
+        <url-pattern>/validateDisplayUsers</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
