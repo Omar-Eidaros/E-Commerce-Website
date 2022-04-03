@@ -41,6 +41,10 @@
         <servlet-name>validateDisplayUsers</servlet-name>
         <servlet-class>handleValidationToDB.validateDisplayUsers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registeration</servlet-name>
+        <servlet-class>registerHandling.Registeration</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -76,6 +80,10 @@
     <servlet-mapping>
         <servlet-name>validateDisplayUsers</servlet-name>
         <url-pattern>/validateDisplayUsers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registeration</servlet-name>
+        <url-pattern>/Registeration</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

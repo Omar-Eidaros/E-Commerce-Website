@@ -18,7 +18,8 @@ public class User {
     private String Password;
     private Date BirthDate;
     private String Phone;
-    private String Address;
+    private String city;
+    private String street;
     private String[] Intersets;
     private String Job;
     private int CreditLimit;
@@ -30,16 +31,47 @@ public class User {
         this.Password = null;
         this.BirthDate = null;
         this.Phone = null;
-        this.Address = null;
+        this.city = null;
+        this.street = null;
         this.Intersets = null;
         this.Job = null;
         this.CreditLimit = 0;
+        
+    }
+
+    public User(String Name, String Email, String Password, Date BirthDate, String Phone, String city,String street, String[] Intersets, String Job) {
+        this.Name = Name;
+        this.Email = Email;
+        this.Password = Password;
+        this.BirthDate = BirthDate;
+        this.Phone = Phone;
+        this.city = city;
+        this.street = street;
+        this.Intersets = Intersets;
+        this.Job = Job;
     }
 
     public User(String Email, String Password) {
         this.Email = Email;
         this.Password = Password;
     }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+    
 
     public int getUserId() {
         return UserId;
@@ -89,13 +121,7 @@ public class User {
         this.Phone = phone;
     }
 
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
+  
 
     public String[] getIntersets() {
         return Intersets;
