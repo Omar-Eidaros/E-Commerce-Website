@@ -4,12 +4,14 @@
  */
 package registerHandling;
 
+import database.MessageFromDB;
+import database.UserManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Salma
  */
-public class Registeration extends HttpServlet {
+public class PhoneValid extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +34,7 @@ public class Registeration extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+      
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,7 +64,7 @@ public class Registeration extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-           try {
+            try{
             PrintWriter out = response.getWriter();
             String name = request.getParameter("username");
             String email = request.getParameter("register-email");
@@ -73,16 +75,18 @@ public class Registeration extends HttpServlet {
             String street = request.getParameter("street");
             String intersets[] = request.getParameterValues("interests");
             String job = request.getParameter("register-job");
+                MessageFromDB mess=UserManager.RegisterNewUser(name, email, password, Date.valueOf(birthDate), phone, intersets, job, street, city);
+    
+                 out.print(mess.getStatus());
 
-           out.print( RegisterValidation.checkError(name, email, password, birthDate, phone, intersets, job, street, city));}
-           
-           
-          
-         catch (SQLException ex) {
+}
+
+            catch (SQLException ex) {
             Logger.getLogger(Registeration.class
                     .getName()).log(Level.SEVERE, null, ex);
         }
-    }
+
+}
 
     /**
      * Returns a short description of the servlet.

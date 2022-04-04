@@ -45,6 +45,10 @@
         <servlet-name>Registeration</servlet-name>
         <servlet-class>registerHandling.Registeration</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PhoneValid</servlet-name>
+        <servlet-class>registerHandling.PhoneValid</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -84,6 +88,10 @@
     <servlet-mapping>
         <servlet-name>Registeration</servlet-name>
         <url-pattern>/Registeration</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhoneValid</servlet-name>
+        <url-pattern>/PhoneValid</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -82,11 +82,12 @@ public class RegisterValidation {
             errMsg.setEmail("");
             num++;
             if (isValidEmail(email)) {
-                errMsg.setEmail("");
-                num++;
+                   errMsg.setEmail("* please enter valid email"); 
+               
             } else {
                
-                 errMsg.setEmail("* please enter valid email"); 
+                  errMsg.setEmail("");
+                num++;
             }
             if (!UserManager.searchEmail(email)) {
                errMsg.setEmail("");
@@ -149,10 +150,11 @@ public class RegisterValidation {
             errMsg.setPhone("");
             num++;
             if (isValidPhone(phone)) {
+                 errMsg.setPhone("* please enter valid phone number"); 
+              
+            } else {
                 errMsg.setPhone("");
                 num++;
-            } else {
-               errMsg.setPhone("* please enter valid phone number"); 
             }
             if (!UserManager.searchPhone(phone)) {
                  errMsg.setPhone("");

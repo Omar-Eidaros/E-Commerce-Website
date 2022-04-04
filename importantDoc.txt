@@ -1,0 +1,25 @@
+to enter to code validation area all you need is to correctly  enter all data 
+
+--> have a look at data base to be sure that email and phone weren't used before : 
+sign n here with data base info  >>>  https://dbms-adminer.clever-cloud.com/?pgsql=bnxyowyoaextmuwl1mr0-postgresql.services.clever-cloud.com&username=uowc5i0hurqszsjbk8za&db=bnxyowyoaextmuwl1mr0&ns=public&table=accounts
+
+
+after click  on register you will be able to enter the code 
+------------------------------------------------------------------------------------------------------------------
+ things to do in /UserRegistration/Registeration.jsp: you will find every thing in the last script tag 
+
+ first : write the function that generates the code then call it whenever you need to use the code " recommendation : make java class that contains all 
+methods then import it in jsp page " 
+
+second : use jsp tags to call the function that  generates the code then save it in "var code" 
+
+third: methods to be edited 
+
+
+resend-----> regenerate code same as second step 
+
+requestCall----> call the function that will call the user 
+
+"""""""""" you will find the code well commented just follow the comments """""""""""""""""""""" 
+
+validate ----> method that checks if code entered is correct then will add user to database and redirect you to home page  """ done """"""
