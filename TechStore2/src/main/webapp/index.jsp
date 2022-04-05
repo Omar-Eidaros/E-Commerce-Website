@@ -57,7 +57,7 @@
         </div><!-- End .filter-toolbox -->
 
         <div class="widget-filter-area" id="product-filter-area">
-            <a href="#" class="widget-filter-clear">Clean All</a>
+            <a href="#" onclick="cleanSearch()" class="widget-filter-clear">Clean All</a>
 
             <div class="filter-area-wrapper">
                 <form id="searchForm">
@@ -73,7 +73,7 @@
                                 <div class="filter-items">
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="radio" class="custom-control-input" value="all" checked id="category-1" name="category">
+                                            <input type="radio" class="custom-control-input" value="all"  id="category-1" name="category">
                                             <label class="custom-control-label" for="category-1">ALL</label>
                                         </div><!-- End .custom-checkbox -->
                                     </div><!-- End .filter-item -->
@@ -87,7 +87,7 @@
 
                                     <div class="filter-item">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="radio" class="custom-control-input" value="labtob" id="category-3" name="category">
+                                            <input type="radio" class="custom-control-input" value="laptob" id="category-3" name="category">
                                             <label class="custom-control-label" for="category-3">Laptop</label>
                                         </div><!-- End .custom-checkbox -->
                                     </div><!-- End .filter-item -->

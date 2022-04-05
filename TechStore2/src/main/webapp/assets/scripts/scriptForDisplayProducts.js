@@ -21,9 +21,16 @@ function getProductsBasedOnUrl() {
 //    document.getElementById("max").setAttribute("value", valueMax);
 //    document.getElementById("price-from").textContent = valueMin;
 //    document.getElementById("price-to").textContent = valueMax;
-//    document.getElementById("category").selectedIndex = urlParams.get('category') == "phone" ? "1" : urlParams.get('category') == "laptob" ? "2" : "0";
 
+    changeRadioButtonDisplay(urlParams.get('category'))
     callAjax();
+}
+
+function changeRadioButtonDisplay(val)
+{
+    let idCategory = val == "phone" ? "category-2" : val == "laptob" ? "category-3" : "category-1";
+    let radiobtn = document.getElementById(idCategory);
+    radiobtn.checked = true;
 }
 
 
@@ -51,6 +58,17 @@ function getQueryFromSearch() {
 
     callAjax();
 
+}
+
+
+function cleanSearch()
+{
+    loading();
+    changeRadioButtonDisplay("all")
+
+    queryString = "";
+
+    callAjax();
 }
 
 
@@ -95,7 +113,7 @@ function sendInfo() {
         document.getElementById("products-container").innerHTML = "";
         let newUrl = "/TechStore2/index.jsp" + queryString;
         window.history.pushState('', 'Admin', newUrl);
-        console.log(request.responseText)
+        //console.log(request.responseText)
         var allDataToDisplay = JSON.parse(request.responseText);
         allDataToDisplay.map(data => {
             document.getElementById("products-container").innerHTML += card(data);
