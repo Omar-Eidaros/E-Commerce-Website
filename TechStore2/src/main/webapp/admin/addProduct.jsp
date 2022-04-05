@@ -76,8 +76,8 @@
                     <label for="category" class="col-sm-2 col-form-label">Category</label>
                     <div class="col-sm-10">
                         <select class="form-select mb-3" aria-label="Default select example" id="category" name="category"  value=<%= category%> >
-                            <option value="phone">Phone</option>
-                            <option value="laptob">Laptob</option>
+                            <option value="phone" <% if(category.equalsIgnoreCase("phone")) out.println("selected"); else out.println();%> >Phone</option>
+                            <option value="laptob"<% if(category.equalsIgnoreCase("laptob")) out.println("selected"); else out.println();%>>Laptop</option>
                         </select>                       
                     </div>
                 </div>

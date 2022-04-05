@@ -86,6 +86,7 @@ function sendInfo() {
         document.getElementById("contain-all-cards").innerHTML = "";
         let newUrl = "/TechStore2/admin/displayProducts.jsp" + queryString;
         window.history.pushState('', 'Admin', newUrl);
+        
         var allDataToDisplay = JSON.parse(request.responseText);
         allDataToDisplay.map(data => {
             document.getElementById("contain-all-cards").innerHTML += card(data);

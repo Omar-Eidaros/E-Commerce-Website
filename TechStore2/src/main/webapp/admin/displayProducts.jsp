@@ -91,7 +91,7 @@
                 <select class="form-select" aria-label="Default select example" id="category" name="category" >
                     <option value="all" >All</option>
                     <option value="phone" >Phone</option>
-                    <option value="laptob">Laptob</option>
+                    <option value="laptob">Laptop</option>
                 </select>                       
 
                 <div class="select-price">
