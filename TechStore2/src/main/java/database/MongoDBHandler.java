@@ -19,7 +19,7 @@ import com.mongodb.client.MongoDatabase;
  */
 public class MongoDBHandler {
 
-    private static String dataBaseUrl = "mongodb://uyqf3ppxafmtrb3gjwg5:l1xjRgKBIGQJipS8lbE4@bdwkbvjqqwvfykg-mongodb.services.clever-cloud.com:27017/bdwkbvjqqwvfykg";
+    private static String dataBaseUrl = "mongodb://uyqf3ppxafmtrb3gjwg5:3zFAqjiHYupsiCrnbQi8@bdwkbvjqqwvfykg-mongodb.services.clever-cloud.com:27017/bdwkbvjqqwvfykg";
     private static String dataBaseName = "bdwkbvjqqwvfykg";
 
     public static List<Order> reviews = new ArrayList<Order>();
@@ -38,15 +38,19 @@ public class MongoDBHandler {
         // Accessing the database 
         MongoDatabase database = mongoClient.getDatabase(dataBaseName);
 
-        //Creating a collection 
-//        database.createCollection("sampleCollection");
         for (String name : database.listCollectionNames()) {
 
             System.out.println(name);
         }
-        System.out.println("Collection created successfully");
 
     }
+
+// add order
+// get orders by userid 
+
+// get order to review 
+// add review to database 
+// calculate review per product
 
     public static List<Order> retriveOneProduct(BasicDBObject query) {
         cursor = collection.find(query).iterator();
@@ -55,5 +59,30 @@ public class MongoDBHandler {
         }
         return reviews;
     }
+
+
+//db.createCollection("reviews",{validator: 
+//{ $jsonSchema: {bsonType: "object",required: [ "orderId","userId","productId","rating" ],
+//properties: {
+//orderId: {bsonType: "string",description: "must be a string and is required"},
+//productId: {bsonType: "string",description: "must be a string and is required"},
+//rating: {bsonType: "int",description: "must be a string and is required"},
+//userId: {bsonType : "string",description: "must be a string and is required"}
+//}
+//}}
+//})
+
+
+//db.createCollection("orders",{validator: 
+//{ $jsonSchema: {bsonType: "object",required: [ "orderdate","userId","productsId","totalprice" ],
+//properties: {
+//orderdate: {bsonType: "string",description: "must be a string and is required"},
+//totalprice: {bsonType: "int",description: "must be a string and is required"},
+//productsId: {bsonType: "array",description: "products must be an array of strings",minItems: 1,items: {"bsonType": "string"}},
+//userId: {bsonType : "string",description: "must be a string and is required"}
+//}
+//}}
+//})
+
 
 }
