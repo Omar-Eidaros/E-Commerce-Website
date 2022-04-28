@@ -7,6 +7,7 @@ package database;
 
 import database.DataHandling;
 import database.MessageFromDB;
+import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
@@ -83,4 +84,28 @@ public class UserManager {
        return res.next();
 
     }
+  public static int getUserId(String email) throws SQLException{
+        
+PreparedStatement stmt;
+         stmt = conn.prepareStatement("select userid from users where email =?");
+        stmt.setString(1, email);
+        ResultSet res = stmt.executeQuery();
+       while(res.next()){
+          return res.getInt("userid");
+
+         }
+     return -1;}
+
+ public static BigDecimal getUserBalance(String email) throws SQLException{
+         
+PreparedStatement stmt;
+         stmt = conn.prepareStatement("select creditlimit from users where email =?");
+        stmt.setString(1, email);
+        ResultSet res = stmt.executeQuery();
+       while(res.next()){
+          return res.getBigDecimal("creditlimit");
+
+         }
+        return BigDecimal.valueOf(-1.0);}
+     
 }

@@ -158,7 +158,7 @@ var card = (data) => {
                         </div><!-- End .product-price -->
 
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>add to cart</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="#" class="btn-product btn-cart" ><span onclick="addTocart(${data.productid})">add to cart</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .product-action -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
@@ -168,9 +168,18 @@ var card = (data) => {
 
 
 
+
+
 function loading()
 {
     document.getElementById("products-container").innerHTML = "";
     document.getElementById("products-container").innerHTML = "<div  class='product-item' style='width: 100% ;text-align: center;font-size: 27px;font-weight: 600'> loading.......</div>";
 
 } 
+
+function addTocart(x){
+         console.log(x)
+    $.post("/TechStore2/CartHandling",{add_cart:x},function(data){
+    console.log(data);
+    });
+}

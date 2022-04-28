@@ -39,11 +39,12 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
     <link rel="stylesheet" href="assets/css/demos/demo-11.css">
+    <link rel="stylesheet" href="/TechStore2/assets/css/register.css">
 </head>
 
 <body>
     <div class="page-wrapper">
-        <header class="header header-7">
+        <header class="header ">
             <div class="header-middle sticky-header">
                 <div class="container">
                     <div class="header-left">
@@ -423,31 +424,22 @@
                                         <li><a href="elements-portfolio.html">Portfolio</a></li>
                                         <li><a href="elements-cta.html">Call to Action</a></li>
                                         <li><a href="elements-icon-boxes.html">Icon Boxes</a></li>
+                                       
                                     </ul>
                                 </li>
+                                 <li><a href="/TechStore2/login.jsp"><i class="icon-user" style="user-select: auto;"></i>Login</a></li>
                             </ul><!-- End .menu -->
                         </nav><!-- End .main-nav -->
                         
-                        <div class="header-search">
-                            <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                            <form action="#" method="get">
-                                <div class="header-search-wrapper">
-                                    <label for="q" class="sr-only">Search</label>
-                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
-                                </div><!-- End .header-search-wrapper -->
-                            </form>
-                        </div><!-- End .header-search -->
                         
-                        <a href="wishlist.html" class="wishlist-link">
-                            <i class="icon-heart-o"></i>
-                                <span class="wishlist-count">3</span>
-                        </a>
+                          
+                       
 
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
-                                <span class="cart-count">2</span>
-                                <span class="cart-txt">$ 164,00</span>
+                                <span class="cart-count" id="cart_count" style="user-select: auto;position: absolute;bottom: 76%;right: 13%;">2</span>
+                                
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right">

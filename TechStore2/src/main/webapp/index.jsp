@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="database.Product"%>
 <%@ include file="header.jsp" %>
 <script type="text/javascript" src="assets/scripts/scriptForDisplayProducts.js"></script>
 
