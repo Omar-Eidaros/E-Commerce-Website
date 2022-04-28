@@ -177,7 +177,7 @@
                         </div><!-- End .product-action -->
 
                         <div class="product-action">
-                            <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                            <a href="quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
                         </div><!-- End .product-action -->
                     </figure><!-- End .product-media -->
 
