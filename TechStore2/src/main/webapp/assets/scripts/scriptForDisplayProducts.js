@@ -11,6 +11,9 @@ window.onload = getProductsBasedOnUrl;
 
 
 function getProductsBasedOnUrl() {
+      $("#contain-product").html("");
+    var cartItems=$("#sessionInfo").val();
+     displayCart(cartItems);
     loading();
     queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

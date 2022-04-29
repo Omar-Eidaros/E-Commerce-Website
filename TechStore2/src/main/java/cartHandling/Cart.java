@@ -12,24 +12,28 @@ import java.util.ArrayList;
  */
 public class Cart {
 
-    private static ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
+    private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
 
-    public static ArrayList<CartItem> getCartItems() {
+    public Cart() {
+        cartItems.clear();
+    }
+
+    public ArrayList<CartItem> getCartItems() {
         return cartItems;
     }
 
-    public static void setCartItems(ArrayList<CartItem> cartItems) {
-        Cart.cartItems = cartItems;
+    public void setCartItems(ArrayList<CartItem> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    public static void addToCart(CartItem c) {
+    public void addToCart(CartItem c) {
 
-        Cart.cartItems.add(c);
+        this.cartItems.add(c);
 
     }
 
-    public static void repeatedElementCart(int id) {
-        for (CartItem pr : Cart.cartItems) {
+    public void repeatedElementCart(int id) {
+        for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
                 pr.setQuantity(pr.getQuantity() + 1);
             }
@@ -38,23 +42,23 @@ public class Cart {
 
     }
 
-    public static void removeFromCart(int id) {
-        for (CartItem pr : Cart.cartItems) {
+    public void removeFromCart(int id) {
+        for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
-                Cart.cartItems.remove(pr);
+                this.cartItems.remove(pr);
                 break;
 
             }
         }
     }
 
-    public static void clearCart() {
-        Cart.cartItems.clear();
+    public void clearCart() {
+        this.cartItems.clear();
     }
 
-    public static boolean checkExistance(int id) {
+    public boolean checkExistance(int id) {
 
-        for (CartItem pr : Cart.cartItems) {
+        for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
                 return true;
 

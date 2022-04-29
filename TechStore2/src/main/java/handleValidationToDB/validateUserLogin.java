@@ -14,7 +14,6 @@ import database.User;
 import database.userLoginHandling;
 import database.MessageFromDB;
 import database.UserManager;
-import database.usersManaging;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
@@ -23,11 +22,11 @@ import javax.servlet.http.HttpSession;
  * @author Omar Samir
  */
 public class validateUserLogin extends HttpServlet {
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         PrintWriter out = response.getWriter();
         userLoginHandling ulh = new userLoginHandling();
         User account = new User();
@@ -40,10 +39,14 @@ public class validateUserLogin extends HttpServlet {
         try {
             MessageFromDB ms = ulh.checkLogin(account);
             if (ms.getStatus()) {
-                HttpSession session=request.getSession();
-                session.setAttribute("userId",UserManager.getUserId(account.getEmail()));
-                session.setAttribute("balance",UserManager.getUserBalance(account.getEmail()));
-                response.sendRedirect("index.html");
+                HttpSession session = request.getSession(true);
+                if (session.getAttribute("userId") == null) {
+                    session.setAttribute("userId", UserManager.getUserId(account.getEmail()));
+                    session.setAttribute("balance", UserManager.getUserBalance(account.getEmail()));
+                    response.sendRedirect("index.html");
+                } else {
+                    out.print("<h1>already logged in <h1> ");
+                }
             } else {
                 response.sendRedirect("errorlogin.html");
             }

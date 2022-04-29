@@ -76,23 +76,26 @@ public class CartHandling extends HttpServlet {
 
             Product p = pm.getProductById(itemId);
             ArrayList<CartItem> items = (ArrayList<CartItem>) cartSesion.getAttribute("cartItems");
-
+            Cart cartArr = new Cart();
             if (cartSesion.getAttribute("userId") != null) {
                 switch (action) {
                     //adding new item or increase quantity of existing one
                     case "add":
                         CartItem ci = new CartItem(p, 1);
+
                         if (items != null) {
+                            cartArr.setCartItems(items);
                             System.out.print("already session exist");
-                            if (Cart.checkExistance(ci.getProductid())) {
-                                Cart.repeatedElementCart(ci.getProductid());
+                            if (cartArr.checkExistance(ci.getProductid())) {
+                                cartArr.repeatedElementCart(ci.getProductid());
                             } else {
                                 System.err.println("newElement");
-                                Cart.addToCart(ci);
+                                cartArr.addToCart(ci);
                             }
                         } else {
-                            Cart.addToCart(ci);
-                            cartSesion.setAttribute("cartItems", Cart.getCartItems());
+
+                            cartArr.addToCart(ci);
+                            cartSesion.setAttribute("cartItems", cartArr.getCartItems());
                             System.out.print("ADDEDD");
 
                         }
@@ -100,12 +103,12 @@ public class CartHandling extends HttpServlet {
                         break;
                     //remove item from cart
                     case "remove":
-                        Cart.removeFromCart(Integer.valueOf(itemId));
+                        cartArr.removeFromCart(Integer.valueOf(itemId));
 
                         break;
                     //clear all cart
                     case "clear":
-                        Cart.clearCart();
+                        cartArr.clearCart();
                         break;
                 }
                 x.print(gson.toJson(cartSesion.getAttribute("cartItems")));

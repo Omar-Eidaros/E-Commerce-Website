@@ -24,7 +24,7 @@ public class userLoginHandling {
         try {
             String mail = "";
             String pass = "";
-            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM \"public\".users;");
+            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM users;");
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 mail = res.getString(1);
@@ -32,7 +32,7 @@ public class userLoginHandling {
                 if (mail.equals(user.getEmail()) && pass.equals(user.getPassword())) {
                     System.out.println("Success");
                     return new MessageFromDB(true, "Account Exist");
-                        } else {
+                } else {
                     System.out.println("Not Exist");
                     return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
                 }
