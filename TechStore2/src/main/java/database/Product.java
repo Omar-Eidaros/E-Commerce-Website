@@ -5,12 +5,12 @@
 package database;
 
 import java.io.InputStream;
-
+import java.io.Serializable;
 /**
  *
  * @author nora
  */
-public class Product {
+public class Product implements Serializable {
 
     private int productid;
     private String productname;
@@ -95,5 +95,10 @@ public class Product {
     public void setBase64Image(String base64Image) {
         this.base64Image = base64Image;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
 
 }

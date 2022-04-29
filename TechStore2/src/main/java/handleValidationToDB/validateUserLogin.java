@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import database.User;
 import database.userLoginHandling;
 import database.MessageFromDB;
+import database.UserManager;
+import database.usersManaging;
 import java.sql.SQLException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -37,6 +40,9 @@ public class validateUserLogin extends HttpServlet {
         try {
             MessageFromDB ms = ulh.checkLogin(account);
             if (ms.getStatus()) {
+                HttpSession session=request.getSession();
+                session.setAttribute("userId",UserManager.getUserId(account.getEmail()));
+                session.setAttribute("balance",UserManager.getUserBalance(account.getEmail()));
                 response.sendRedirect("index.html");
             } else {
                 response.sendRedirect("errorlogin.html");

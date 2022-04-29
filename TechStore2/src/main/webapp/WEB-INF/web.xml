@@ -4,6 +4,10 @@
         <description>ServletContextListener</description>
         <listener-class>com.store.handleListenerContext</listener-class>
     </listener>
+    <listener>
+        <description>HttpSessionListener</description>
+        <listener-class>com.store.RemoveSession</listener-class>
+    </listener>
     <servlet>
         <servlet-name>NewServlet</servlet-name>
         <servlet-class>com.mycompany.techstore2.NewServlet</servlet-class>
@@ -49,6 +53,10 @@
         <servlet-name>PhoneValid</servlet-name>
         <servlet-class>registerHandling.PhoneValid</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CartHandling</servlet-name>
+        <servlet-class>cartHandling.CartHandling</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -92,6 +100,10 @@
     <servlet-mapping>
         <servlet-name>PhoneValid</servlet-name>
         <url-pattern>/PhoneValid</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartHandling</servlet-name>
+        <url-pattern>/CartHandling</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

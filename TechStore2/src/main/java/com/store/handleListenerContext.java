@@ -7,6 +7,8 @@ package com.store;
 import database.DataHandling;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSessionListener;
 
 /**
  * Web application lifecycle listener.
@@ -14,7 +16,7 @@ import javax.servlet.ServletContextListener;
  * @author nora
  */
 public class handleListenerContext implements ServletContextListener {
-
+   
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("the app is deployed");
@@ -28,6 +30,8 @@ public class handleListenerContext implements ServletContextListener {
 
         try {
             DataHandling.closeConnection();
+       
+ 
         } catch (Exception e) {
             System.out.println(e + " : error to start connection");
         }

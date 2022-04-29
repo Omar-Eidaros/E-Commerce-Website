@@ -7,6 +7,7 @@ package database;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -222,5 +223,37 @@ public class productManaging {
             return new MessageFromDB(false, "please try again");
         }
     }
+   public  Product getProductById(String id) throws SQLException {
+       
+          Product product = null;
+        try {
 
+            PreparedStatement stmt = conn.prepareStatement("select * from products where productid="+Integer.valueOf(id));
+
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+
+                InputStream inputStream = res.getBinaryStream("image");
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[4096];
+                int bytesRead = -1;
+
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                byte[] imageBytes = outputStream.toByteArray();
+                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+                 product=new Product(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5), base64Image, res.getInt(7));
+            }
+
+        } catch (SQLException | IOException | NumberFormatException e) {
+            
+            System.err.println(e);
+        }
+        
+     
+        return product;
+    }
 }
