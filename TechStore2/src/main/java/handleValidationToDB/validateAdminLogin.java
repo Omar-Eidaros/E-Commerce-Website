@@ -34,7 +34,7 @@ public class validateAdminLogin extends HttpServlet {
         try {
             MessageFromDB ms = alh.checkAdminLogin(account);
             if (ms.getStatus()) {
-                response.sendRedirect("index.html");
+                response.sendRedirect("admin/displayProducts.jsp");
             } else {
                 response.sendRedirect("erroradminlogin.html");
             }

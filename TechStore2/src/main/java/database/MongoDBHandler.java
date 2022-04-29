@@ -10,8 +10,8 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import java.util.List;
-import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
 /**
  *
@@ -19,13 +19,10 @@ import com.mongodb.client.MongoDatabase;
  */
 public class MongoDBHandler {
 
-    private static String dataBaseUrl = "mongodb://uyqf3ppxafmtrb3gjwg5:3zFAqjiHYupsiCrnbQi8@bdwkbvjqqwvfykg-mongodb.services.clever-cloud.com:27017/bdwkbvjqqwvfykg";
-    private static String dataBaseName = "bdwkbvjqqwvfykg";
-
-    public static List<Order> reviews = new ArrayList<Order>();
+    private static final String dataBaseUrl = "mongodb://uyqf3ppxafmtrb3gjwg5:3zFAqjiHYupsiCrnbQi8@bdwkbvjqqwvfykg-mongodb.services.clever-cloud.com:27017/bdwkbvjqqwvfykg";
+    private static final String dataBaseName = "bdwkbvjqqwvfykg";
     public static MongoClient mongoClient;
-    public static MongoCollection<Order> collection;
-    public static MongoCursor<Order> cursor;
+    private static MongoDatabase database;
 
     public static void connectDB() {
 
@@ -36,7 +33,7 @@ public class MongoDBHandler {
         System.out.println("Connected to the database successfully");
 
         // Accessing the database 
-        MongoDatabase database = mongoClient.getDatabase(dataBaseName);
+        database = mongoClient.getDatabase(dataBaseName);
 
         for (String name : database.listCollectionNames()) {
 
@@ -46,20 +43,56 @@ public class MongoDBHandler {
     }
 
 // add order
-// get orders by userid 
-
-// get order to review 
-// add review to database 
-// calculate review per product
-
-    public static List<Order> retriveOneProduct(BasicDBObject query) {
-        cursor = collection.find(query).iterator();
-        while (cursor.hasNext()) {
-            reviews.add(cursor.next());
-        }
-        return reviews;
+    public static void addNewOrder(Order order) {
+        //Preparing a document
+        Document document = new Document();
+        document.append("orderdate", order.getOrderdate());
+        document.append("userId", order.getUserId());
+        document.append("totalprice", order.getTotalprice());
+        document.append("productsId", order.getProductId());
+        //Inserting the document into the collection
+        database.getCollection("orders").insertOne(document);
     }
 
+// get orders by userid 
+    public static List<Order> retriveAllOrders(int userId) {
+        List<Order> order = new ArrayList<Order>();
+
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("userId", userId);
+        MongoCursor<Document> cursor = database.getCollection("orders").find(whereQuery).iterator();
+
+        while (cursor.hasNext()) {
+            System.out.println(cursor.next());
+
+        }
+        return order;
+    }
+
+// add review to database 
+    public static void addNewReview(Review review) {
+        //Preparing a document
+        Document document = new Document();
+        document.append("orderId", review.getOrderId());
+        document.append("userId", review.getUserId());
+        document.append("productId", review.getProductId());
+        document.append("rating", review.getRating());
+        //Inserting the document into the collection
+        database.getCollection("reviews").insertOne(document);
+    }
+
+// calculate review per product
+    public static int retriveRatingToOneProduct(int productId) {
+        int rating = 0;
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("productId", productId);
+        MongoCursor<Document> cursor = database.getCollection("reviews").find(whereQuery).iterator();
+
+        while (cursor.hasNext()) {
+            System.out.println(cursor.next());
+        }
+        return rating;
+    }
 
 //db.createCollection("reviews",{validator: 
 //{ $jsonSchema: {bsonType: "object",required: [ "orderId","userId","productId","rating" ],
@@ -71,8 +104,6 @@ public class MongoDBHandler {
 //}
 //}}
 //})
-
-
 //db.createCollection("orders",{validator: 
 //{ $jsonSchema: {bsonType: "object",required: [ "orderdate","userId","productsId","totalprice" ],
 //properties: {
@@ -83,6 +114,4 @@ public class MongoDBHandler {
 //}
 //}}
 //})
-
-
 }
