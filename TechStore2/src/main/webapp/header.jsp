@@ -76,7 +76,7 @@
                         <div class="dropdown cart-dropdown">
                             <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                 <i class="icon-shopping-cart"></i>
-                                <span class="cart-count" id="cart_count" style="user-select: auto;position: absolute;bottom: 76%;right: 13%;">2</span>
+                                <span class="cart-count" id="cart_count" style="user-select: auto;position: absolute;bottom: 76%;right: 13%;">0</span>
                                 
                             </a>
 
@@ -87,11 +87,11 @@
                                 <div class="dropdown-cart-total" style="user-select: auto;">
                                     <span style="user-select: auto;">Total</span>
 
-                                    <span class="cart-total-price" style="user-select: auto;">$160.00</span>
+                                    <span class="cart-total-price" id="total_price" style="user-select: auto;">$00.00</span>
                                 </div><!-- End .dropdown-cart-total -->
 
                                 <div class="dropdown-cart-action" style="user-select: auto;">
-                                    <a href="cart.html" class="btn btn-primary" style="user-select: auto;">View Cart</a>
+                                    <a href="cart.jsp" class="btn btn-primary" style="user-select: auto;">View Cart</a>
                                     <a href="checkout.html" class="btn btn-outline-primary-2" style="user-select: auto;"><span style="user-select: auto;">Checkout</span><i class="icon-long-arrow-right" style="user-select: auto;"></i></a>
                                 </div><!-- End .dropdown-cart-total -->
                             </div>

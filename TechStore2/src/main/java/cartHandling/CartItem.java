@@ -10,7 +10,7 @@ import database.Product;
  *
  * @author Salma
  */
-class CartItem extends Product {
+public class CartItem extends Product {
 
     public CartItem(Product p, int q) {
         super(p.getProductid(), p.getProductname(), p.getDescription(), p.getPrice(), p.getCategory(), p.getBase64Image(), q);

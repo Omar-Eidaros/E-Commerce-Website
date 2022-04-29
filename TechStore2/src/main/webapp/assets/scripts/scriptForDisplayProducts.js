@@ -157,8 +157,8 @@ var card = (data) => {
                            <!-- <span class="old-price">Was $939.00</span> -->
                         </div><!-- End .product-price -->
 
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" onclick="addTocart(${data.productid})" ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
+                        <div class="product-action" onclick="addTocart(${data.productid})">
+                            <a href="#" class="btn-product btn-cart"  ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .product-action -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
@@ -185,7 +185,7 @@ var cart_item = (data) => {
                                                 <img src="data:image/gif;base64,${data.base64Image}" alt="product" style="user-select: auto;">
                                             </a>
                                         </figure>
-                                        <a href="#" class="btn-remove" title="Remove Product" style="user-select: auto;"><i class="icon-close" style="user-select: auto;"></i></a>
+                                        <span  class="btn-remove" title="Remove Product" style="user-select: auto;" onclick="removeFromCart(${data.productid})"><i class="icon-close" style="user-select: auto;"></i></span>
                                     </div><!-- End .product -->`;
     return item;
 }
@@ -204,22 +204,16 @@ function addTocart(x){
          console.log(x);
     $.post("/TechStore2/CartHandling",{cart_item:x,action:"add"},function(data){
     console.log(JSON.parse(data));
-    var arr=$.parseJSON(data);
-    var items_count=0;
+    displayCart(data);
+});
     
-    $.each(arr,function(index, value){
-        $("#contain-product").append(cart_item(value));
-        items_count+=value.quantity;
-    });
-    $("#cart_count").html(items_count);
-    });
 }
 
 function removeFromCart(x){
-         console.log(x);
+        $("#contain-product").html("");
     $.post("/TechStore2/CartHandling",{cart_item:x,action:"remove"},function(data){
     console.log(JSON.parse(data));
-    
+          displayCart(data);
     });
     
 }
@@ -228,6 +222,22 @@ function removeFromCart(x){
          console.log(x)
     $.post("/TechStore2/CartHandling",{cart_item:x,action:"clear"},function(data){
   console.log(JSON.parse(data));
+    displayCart(data);
     });
     
 } 
+
+function displayCart(data){
+    
+     var arr=$.parseJSON(data);
+    var items_count=0;
+    var total_price=0;
+    
+    $.each(arr,function(index, value){
+        $("#contain-product").append(cart_item(value));
+        items_count+=value.quantity;
+        total_price+=value.quantity*value.price;
+    });
+    $("#cart_count").html(items_count);
+    $("#total_price").html(total_price);
+    }

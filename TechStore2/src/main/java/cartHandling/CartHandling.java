@@ -96,18 +96,19 @@ public class CartHandling extends HttpServlet {
                             System.out.print("ADDEDD");
 
                         }
-                        x.print(gson.toJson(cartSesion.getAttribute("cartItems")));
 
                         break;
                     //remove item from cart
                     case "remove":
                         Cart.removeFromCart(Integer.valueOf(itemId));
+
                         break;
                     //clear all cart
                     case "clear":
                         Cart.clearCart();
                         break;
                 }
+                x.print(gson.toJson(cartSesion.getAttribute("cartItems")));
             } else {
                 System.out.print("notlogged");
 
