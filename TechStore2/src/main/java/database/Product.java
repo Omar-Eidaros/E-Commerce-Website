@@ -6,20 +6,21 @@ package database;
 
 import java.io.InputStream;
 import java.io.Serializable;
+
 /**
  *
  * @author nora
  */
 public class Product implements Serializable {
 
-    private int productid;
-    private String productname;
-    private String description;
-    private int price;
-    private String category;
-    private InputStream image;
+    protected int productid;
+    protected String productname;
+    protected String description;
+    protected int price;
+    protected String category;
+    protected InputStream image;
     private int quantity;
-    private String base64Image;
+    protected String base64Image;
 
     public Product(String productname, String description, int price, String category, InputStream image, int quantity) {
         this.productname = productname;
@@ -30,7 +31,6 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-
     public Product(int productid, String productname, String description, int price, String category, int quantity) {
         this.productid = productid;
         this.productname = productname;
@@ -38,6 +38,16 @@ public class Product implements Serializable {
         this.price = price;
         this.category = category;
         this.quantity = quantity;
+    }
+
+    public Product(int productid, String productname, String description, int price, String category, InputStream image, String base64Image) {
+        this.productid = productid;
+        this.productname = productname;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.image = image;
+        this.base64Image = base64Image;
     }
 
     public Product(int productid, String productname, String description, int price, String category, InputStream image, int quantity) {
@@ -99,6 +109,5 @@ public class Product implements Serializable {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
 
 }

@@ -158,7 +158,7 @@ var card = (data) => {
                         </div><!-- End .product-price -->
 
                         <div class="product-action">
-                            <a href="#" class="btn-product btn-cart" ><span onclick="addTocart(${data.productid})">add to cart</span><i class="icon-long-arrow-right"></i></a>
+                            <a href="#" class="btn-product btn-cart" onclick="addTocart(${data.productid})" ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .product-action -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
@@ -166,7 +166,29 @@ var card = (data) => {
     return x;
 }
 
+var cart_item = (data) => {
+    
+    let item = ` <div class="product" style="user-select: auto;height: fit-content;">
+                                        <div class="product-cart-details" style="user-select: auto;">
+                                            <h4 class="product-title" style="user-select: auto;">
+                                                <a href="quickView.jsp?id=${data.productid}" title="Quick view" style="user-select: auto;\">${data.productname}</a>
+                                            </h4>
 
+                                            <span class="cart-product-info" style="user-select: auto;">
+                                                <span class="cart-product-qty" style="user-select: auto;">${data.quantity}</span>
+                                                x ${data.price}
+                                            </span>
+                                        </div><!-- End .product-cart-details -->
+
+                                        <figure class="product-image-container" style="user-select: auto;">
+                                            <a href="quickView.jsp?id=${data.productid}" title="Quick view" class="product-image" style="user-select: auto;height: fit-content;">
+                                                <img src="data:image/gif;base64,${data.base64Image}" alt="product" style="user-select: auto;">
+                                            </a>
+                                        </figure>
+                                        <a href="#" class="btn-remove" title="Remove Product" style="user-select: auto;"><i class="icon-close" style="user-select: auto;"></i></a>
+                                    </div><!-- End .product -->`;
+    return item;
+}
 
 
 
@@ -178,8 +200,34 @@ function loading()
 } 
 
 function addTocart(x){
-         console.log(x)
-    $.post("/TechStore2/CartHandling",{add_cart:x},function(data){
-    console.log(data);
+    $("#contain-product").html("");
+         console.log(x);
+    $.post("/TechStore2/CartHandling",{cart_item:x,action:"add"},function(data){
+    console.log(JSON.parse(data));
+    var arr=$.parseJSON(data);
+    var items_count=0;
+    
+    $.each(arr,function(index, value){
+        $("#contain-product").append(cart_item(value));
+        items_count+=value.quantity;
+    });
+    $("#cart_count").html(items_count);
     });
 }
+
+function removeFromCart(x){
+         console.log(x);
+    $.post("/TechStore2/CartHandling",{cart_item:x,action:"remove"},function(data){
+    console.log(JSON.parse(data));
+    
+    });
+    
+}
+
+ function clearCart(x){
+         console.log(x)
+    $.post("/TechStore2/CartHandling",{cart_item:x,action:"clear"},function(data){
+  console.log(JSON.parse(data));
+    });
+    
+} 

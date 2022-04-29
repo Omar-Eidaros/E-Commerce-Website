@@ -4,8 +4,6 @@
  */
 package cartHandling;
 
-import database.Product;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 /**
@@ -14,37 +12,55 @@ import java.util.ArrayList;
  */
 public class Cart {
 
-    private static ArrayList<Product> cartItems = new ArrayList<Product>();
+    private static ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
 
-    public static ArrayList<Product> getCartItems() {
+    public static ArrayList<CartItem> getCartItems() {
         return cartItems;
     }
 
-    public static void setCartItems(ArrayList<Product> cartItems) {
+    public static void setCartItems(ArrayList<CartItem> cartItems) {
         Cart.cartItems = cartItems;
     }
 
-    public static void addToCart(Product p) {
+    public static void addToCart(CartItem c) {
 
-        Cart.cartItems.add(p);
+        Cart.cartItems.add(c);
 
     }
 
-    public static void deleteFromCart(Product p) {
-        
-        Cart.cartItems.remove(Cart.cartItems.indexOf(p));
+    public static void repeatedElementCart(int id) {
+        for (CartItem pr : Cart.cartItems) {
+            if (pr.getProductid() == id) {
+                pr.setQuantity(pr.getQuantity() + 1);
+            }
+
+        }
+
+    }
+
+    public static void removeFromCart(int id) {
+        for (CartItem pr : Cart.cartItems) {
+            if (pr.getProductid() == id) {
+                Cart.cartItems.remove(pr);
+                break;
+
+            }
+        }
     }
 
     public static void clearCart() {
         Cart.cartItems.clear();
     }
 
-    public static boolean checkExistance(Product p) {
+    public static boolean checkExistance(int id) {
 
-        for (Product pr : Cart.cartItems) {
-            return pr.getProductid() == p.getProductid();
+        for (CartItem pr : Cart.cartItems) {
+            if (pr.getProductid() == id) {
+                return true;
 
+            }
         }
-        return false;}
+        return false;
+    }
 
 }

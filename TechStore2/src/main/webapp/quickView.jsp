@@ -90,8 +90,8 @@
                                             </div> End .product-details-quantity 
                                         </div> End .details-filter-row -->
 
-                    <div class="product-details-action">
-                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                    <div class="product-details-action" onclick=<%=productid%>>
+                        <a href="#" class="btn-product btn-cart" ><span>add to cart</span></a>
                     </div>
 
                 </div>

@@ -64,38 +64,55 @@ public class CartHandling extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            GsonBuilder builder = new GsonBuilder(); 
-            Gson gson = builder.create();
-             PrintWriter x = response.getWriter();
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        PrintWriter x = response.getWriter();
         try {
             processRequest(request, response);
-            String itemId = request.getParameter("add_cart");
+            String itemId = request.getParameter("cart_item");
+            String action = request.getParameter("action");
             HttpSession cartSesion = request.getSession(false);
             productManaging pm = new productManaging();
+
             Product p = pm.getProductById(itemId);
-            int quantity = 1;
-            p.setQuantity(quantity);
-             
-            ArrayList<Product> cartItems = (ArrayList<Product>) cartSesion.getAttribute("cartItems");
-            if (cartItems == null) {
-                 cartSesion.setAttribute("cartItems", Cart.getCartItems());
-                Cart.addToCart(p);
-               
-               
-            } else {
-                
-                  Cart.setCartItems(cartItems);
-                if (Cart.checkExistance(p)) {
-                     Cart.deleteFromCart(p);
-                    
-                } else {
-                   Cart.addToCart(p);
-                      
+            ArrayList<CartItem> items = (ArrayList<CartItem>) cartSesion.getAttribute("cartItems");
+
+            if (cartSesion.getAttribute("userId") != null) {
+                switch (action) {
+                    //adding new item or increase quantity of existing one
+                    case "add":
+                        CartItem ci = new CartItem(p, 1);
+                        if (items != null) {
+                            System.out.print("already session exist");
+                            if (Cart.checkExistance(ci.getProductid())) {
+                                Cart.repeatedElementCart(ci.getProductid());
+                            } else {
+                                System.err.println("newElement");
+                                Cart.addToCart(ci);
+                            }
+                        } else {
+                            Cart.addToCart(ci);
+                            cartSesion.setAttribute("cartItems", Cart.getCartItems());
+                            System.out.print("ADDEDD");
+
+                        }
+                        x.print(gson.toJson(cartSesion.getAttribute("cartItems")));
+
+                        break;
+                    //remove item from cart
+                    case "remove":
+                        Cart.removeFromCart(Integer.valueOf(itemId));
+                        break;
+                    //clear all cart
+                    case "clear":
+                        Cart.clearCart();
+                        break;
                 }
+            } else {
+                System.out.print("notlogged");
+
             }
-           
-             x.print(cartSesion.getAttribute("cartItems"));
-          
+
         } catch (SQLException e) {
             System.out.println(e);
         }
