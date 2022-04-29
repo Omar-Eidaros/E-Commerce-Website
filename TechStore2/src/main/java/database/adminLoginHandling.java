@@ -19,25 +19,21 @@ public class adminLoginHandling {
 
     public MessageFromDB checkAdminLogin(Admin admin) throws SQLException {
         try {
-            String mail = "";
-            String pass = "";
-            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM \"public\".admins;");
+
+            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM admins where email=? and password = ?");
+            stmt.setString(1, admin.getEmail());
+            stmt.setString(2, admin.getPassword());
+
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-                mail = res.getString(1);
-                pass = res.getString(2);
-                if (mail.equals(admin.getEmail()) && pass.equals(admin.getPassword())) {
-                    System.out.println("Success");
-                    return new MessageFromDB(true, "Account Exist");
-                } else {
-                    System.out.println("Not Exist");
-                    return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
-                }
+                System.out.println("Success");
+                return new MessageFromDB(true, "Account Exist");
+
             }
         } catch (SQLException ex) {
             System.err.println("error");
         }
-        DataHandling.closeConnection();
+        System.out.println("Not Exist");
         return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
     }
 }

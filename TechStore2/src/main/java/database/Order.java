@@ -4,14 +4,19 @@
  */
 package database;
 
+import java.util.List;
+
 /**
  *
  * @author Omar Samir
  */
 public class Order {
+
     private int orderId;
-    private int productId;
-    private String productReview = "";
+    private int userId;
+    private List<Integer> productId;
+    private int totalprice; 
+    private String orderdate = "";
 
     public int getOrderId() {
         return orderId;
@@ -21,21 +26,39 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getProductId() {
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public List<Integer> getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(List<Integer> productId) {
         this.productId = productId;
     }
 
-    public String getProductReview() {
-        return productReview;
+    public int getTotalprice() {
+        return totalprice;
     }
 
-    public void setProductReview(String productReview) {
-        this.productReview = productReview;
+    public void setTotalprice(int totalprice) {
+        this.totalprice = totalprice;
     }
+
+    public String getOrderdate() {
+        return orderdate;
+    }
+
+    public void setOrderdate(String orderdate) {
+        this.orderdate = orderdate;
+    }
+
+    
 
 
 }

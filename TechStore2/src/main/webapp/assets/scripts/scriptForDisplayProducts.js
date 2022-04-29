@@ -137,7 +137,7 @@ var card = (data) => {
                 <div class="product product-4">
                     <figure class="product-media">
                         ${productLabel}
-                        <a href="product.html">
+                        <a href="#">
                             <img src="data:image/gif;base64,${data.base64Image}" alt="Product image" class="product-image">
                         </a>
 
@@ -151,7 +151,7 @@ var card = (data) => {
                     </figure><!-- End .product-media -->
 
                     <div class="product-body">
-                        <h3 class="product-title"><a href="product.html">${data.productname}</a></h3><!-- End .product-title -->
+                        <h3 class="product-title"><a href="#">${data.productname}</a></h3><!-- End .product-title -->
                         <div class="product-price">
                             <span class="new-price">$${data.price}</span>
                            <!-- <span class="old-price">Was $939.00</span> -->

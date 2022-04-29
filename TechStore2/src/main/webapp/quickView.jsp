@@ -7,7 +7,7 @@
 <%@page import="java.io.ByteArrayOutputStream"%>
 <%@page import="java.io.InputStream"%>
 <%@page import="java.sql.Connection"%>
-<%@ include file="header.jsp" %>
+<%@include file="header.jsp" %>
 <%@page import="database.DataHandling"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -78,11 +78,6 @@
                     </div><!-- End .rating-container -->
 
                     <p class="product-txt" id="productDescription"><%=res.getString(3)%></p>
-
-
-
-
-
                     <!--                    <div class="details-filter-row details-row-size">
                                             <label for="qty">Qty:</label>
                                             <div class="product-details-quantity">
