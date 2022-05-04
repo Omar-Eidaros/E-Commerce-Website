@@ -140,21 +140,14 @@ var card = (data) => {
                 <div class="product product-4">
                     <figure class="product-media">
                         ${productLabel}
-                        <a href="#">
                             <img src="data:image/gif;base64,${data.base64Image}" alt="Product image" class="product-image">
-                        </a>
-
-                        <div class="product-action-vertical">
-                            <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
-                        </div><!-- End .product-action -->
-
                         <div class="product-action">
                             <a href="quickView.jsp?id=${data.productid}" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
                         </div><!-- End .product-action -->
                     </figure><!-- End .product-media -->
 
                     <div class="product-body">
-                        <h3 class="product-title"><a href="#">${data.productname}</a></h3><!-- End .product-title -->
+                        <h3 class="product-title">${data.productname}</h3><!-- End .product-title -->
                         <div class="product-price">
                             <span class="new-price">$${data.price}</span>
                            <!-- <span class="old-price">Was $939.00</span> -->

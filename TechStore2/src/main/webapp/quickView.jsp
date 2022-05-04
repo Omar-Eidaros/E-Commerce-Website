@@ -3,6 +3,8 @@
     Created on : Apr 27, 2022, 2:07:30 AM
     Author     : nora
 --%>
+<%@page import="database.productManaging"%>
+<%@page import="database.Product"%>
 <%@page import="java.util.Base64"%>
 <%@page import="java.io.ByteArrayOutputStream"%>
 <%@page import="java.io.InputStream"%>
@@ -14,25 +16,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String productid = request.getParameter("id");
-    Connection conn = DataHandling.getConnection();
-    try {
-        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM products WHERE productid = ? ");
-        stmt.setInt(1, Integer.parseInt(productid));
-        ResultSet res = stmt.executeQuery();
-        while (res.next()) {
-
-            InputStream inputStream = res.getBinaryStream("image");
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            byte[] buffer = new byte[4096];
-            int bytesRead = -1;
-
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-
-            byte[] imageBytes = outputStream.toByteArray();
-            String base64Image = "data:image/gif;base64," + Base64.getEncoder().encodeToString(imageBytes);
-
+    productManaging PM = new productManaging();
+    Product product = PM.getProductById(productid);
+    String base64Image = "data:image/gif;base64," + product.getBase64Image();
 %>
 <main class="main">
     <div class="container quickView-container">
@@ -59,7 +45,7 @@
                                  }'>
 
                                 <div class="intro-slide" data-hash="one">
-                                    <img src=<%=base64Image%>>
+                                    <img src=<%=base64Image%> >
                                 </div><!-- End .intro-slide -->
 
                             </div>
@@ -67,8 +53,8 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-6">
-                    <h2 class="product-title" id="productTitle"><%=res.getString(2)%></h2>
-                    <h3 class="product-price" id="productPrice"><%=res.getString(4)%></h3>
+                    <h2 class="product-title" id="productTitle"><%=product.getProductname()%></h2>
+                    <h3 class="product-price" id="productPrice"><%=product.getPrice()%></h3>
 
                     <div class="ratings-container">
                         <div class="ratings">
@@ -77,7 +63,7 @@
                         <span class="ratings-text" id="productRating">( 2 Reviews )</span>
                     </div><!-- End .rating-container -->
 
-                    <p class="product-txt" id="productDescription"><%=res.getString(3)%></p>
+                    <p class="product-txt" id="productDescription"><%=product.getDescription()%></p>
                     <!--                    <div class="details-filter-row details-row-size">
                                             <label for="qty">Qty:</label>
                                             <div class="product-details-quantity">
@@ -95,12 +81,4 @@
     </div>
 </main>
 
-<%
-        }
-        res.close();
-        res = null;
-    } catch (Exception e) {
-        out.println(e);
-    }
-%>
 <%@ include file="footer.jsp" %>
