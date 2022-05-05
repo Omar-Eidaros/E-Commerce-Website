@@ -77,20 +77,27 @@ public class CartHandling extends HttpServlet {
             Product p = pm.getProductById(itemId);
             ArrayList<CartItem> items = (ArrayList<CartItem>) cartSesion.getAttribute("cartItems");
             Cart cartArr = new Cart();
+            int cash = (int) cartSesion.getAttribute("balance");
+            System.err.println(cash);
             if (cartSesion.getAttribute("userId") != null) {
                 switch (action) {
                     //adding new item or increase quantity of existing one
                     case "add":
                         CartItem ci = new CartItem(p, 1);
-
                         if (items != null) {
                             cartArr.setCartItems(items);
-                            System.out.print("already session exist");
-                            if (cartArr.checkExistance(ci.getProductid())) {
-                                cartArr.repeatedElementCart(ci.getProductid());
-                            } else {
-                                System.err.println("newElement");
+                            if (cartArr.getTotalCost() > cash) {
+                                System.err.println("exceeded balace");
+                                ci.setQuantity(0);
+                                ci.setPrice(0);
                                 cartArr.addToCart(ci);
+                            } else {
+                                if (cartArr.checkExistance(ci.getProductid())) {
+                                    cartArr.repeatedElementCart(ci.getProductid());
+                                } else {
+                                    System.err.println("newElement");
+                                    cartArr.addToCart(ci);
+                                }
                             }
                         } else {
 
@@ -99,6 +106,7 @@ public class CartHandling extends HttpServlet {
                             System.out.print("ADDEDD");
 
                         }
+                        x.print(gson.toJson(cartSesion.getAttribute("cartItems")));
 
                         break;
                     //remove item from cart
@@ -111,7 +119,7 @@ public class CartHandling extends HttpServlet {
                         cartArr.clearCart();
                         break;
                 }
-                x.print(gson.toJson(cartSesion.getAttribute("cartItems")));
+
             } else {
                 System.out.print("notlogged");
 

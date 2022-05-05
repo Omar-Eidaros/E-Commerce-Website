@@ -67,4 +67,12 @@ public class Cart {
         return false;
     }
 
+    public int getTotalCost() {
+        int total = 0;
+        for (CartItem ci : this.cartItems) {
+            total += ci.getPrice();
+            System.err.println(total);
+        }
+        return total;
+    }
 }

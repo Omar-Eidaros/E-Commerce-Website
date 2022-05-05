@@ -7,15 +7,12 @@ package database;
 
 import database.DataHandling;
 import database.MessageFromDB;
-import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -66,46 +63,48 @@ public class UserManager {
 
     public static boolean searchEmail(String email) throws SQLException {
         PreparedStatement stmt;
-   
+
         stmt = conn.prepareStatement("select email from users where email =?");
         stmt.setString(1, email);
         ResultSet res = stmt.executeQuery();
         return res.next();
-        
 
     }
 
     public static boolean searchPhone(String phone) throws SQLException {
         PreparedStatement stmt;
-       
+
         stmt = conn.prepareStatement("select phonenumber from users where phonenumber =?");
         stmt.setString(1, phone);
         ResultSet res = stmt.executeQuery();
-       return res.next();
+        return res.next();
 
     }
-  public static int getUserId(String email) throws SQLException{
-        
-PreparedStatement stmt;
-         stmt = conn.prepareStatement("select userid from users where email =?");
+
+    public static int getUserId(String email) throws SQLException {
+
+        PreparedStatement stmt;
+        stmt = conn.prepareStatement("select userid from users where email =?");
         stmt.setString(1, email);
         ResultSet res = stmt.executeQuery();
-       while(res.next()){
-          return res.getInt("userid");
+        while (res.next()) {
+            return res.getInt("userid");
 
-         }
-     return -1;}
+        }
+        return -1;
+    }
 
- public static BigDecimal getUserBalance(String email) throws SQLException{
-         
-PreparedStatement stmt;
-         stmt = conn.prepareStatement("select creditlimit from users where email =?");
+    public static int getUserBalance(String email) throws SQLException {
+
+        PreparedStatement stmt;
+        stmt = conn.prepareStatement("select creditlimit from users where email =?");
         stmt.setString(1, email);
         ResultSet res = stmt.executeQuery();
-       while(res.next()){
-          return res.getBigDecimal("creditlimit");
+        while (res.next()) {
+            return res.getInt("creditlimit");
 
-         }
-        return BigDecimal.valueOf(-1.0);}
-     
+        }
+        return -1;
+    }
+
 }

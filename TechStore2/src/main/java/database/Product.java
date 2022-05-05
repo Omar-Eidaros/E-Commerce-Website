@@ -110,4 +110,8 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
 }
