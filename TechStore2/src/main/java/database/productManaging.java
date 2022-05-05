@@ -223,7 +223,7 @@ public class productManaging {
             return new MessageFromDB(false, "please try again");
         }
     }
-   public  Product getProductById(String id) throws SQLException {
+   public Product getProductById(String id) throws SQLException {
        
           Product product = null;
         try {
