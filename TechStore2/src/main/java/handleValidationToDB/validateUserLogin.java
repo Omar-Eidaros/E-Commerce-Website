@@ -5,15 +5,13 @@
 package handleValidationToDB;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.User;
 import database.userLoginHandling;
-import database.MessageFromDB;
-import database.UserManager;
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
@@ -26,29 +24,27 @@ public class validateUserLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            //PrintWriter out = response.getWriter();
+            User account = new User();
 
-        PrintWriter out = response.getWriter();
-        userLoginHandling ulh = new userLoginHandling();
-        User account = new User();
-        if (request.getParameter("singin-email") == null || request.getParameter("singin-password") == null) {
-            out.println("<h1>Invalid inputs </h1>");
-        } else {
             account.setEmail(request.getParameter("singin-email"));
             account.setPassword(request.getParameter("singin-password"));
-        }
-        try {
-            MessageFromDB ms = ulh.checkLogin(account);
-            if (ms.getStatus()) {
+
+            User user = userLoginHandling.checkLogin(account);
+
+            if (user.getUserId() != -1) {
                 HttpSession session = request.getSession(true);
-                if (session.getAttribute("userId") == null) {
-                    session.setAttribute("userId", UserManager.getUserId(account.getEmail()));
-                    session.setAttribute("balance", UserManager.getUserBalance(account.getEmail()));
-                    response.sendRedirect("index.html");
-                } else {
-                    out.print("<h1>already logged in <h1> ");
-                }
+                session.setAttribute("isAuth", "true");
+                session.setAttribute("userId", user.getUserId());
+                session.setAttribute("email", user.getEmail());
+                session.setAttribute("name", user.getName());
+                session.setAttribute("balance", user.getCreditLimit());
+                response.sendRedirect("cart.jsp");
+
+
             } else {
-                response.sendRedirect("errorlogin.html");
+                response.sendRedirect("login.jsp?isLogin=false");
             }
         } catch (SQLException ex) {
         }

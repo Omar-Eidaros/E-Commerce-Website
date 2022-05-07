@@ -18,29 +18,22 @@ import java.sql.SQLException;
  */
 public class userLoginHandling {
 
-    private Connection connection = DataHandling.getConnection();
-
-    public MessageFromDB checkLogin(User user) throws SQLException {
+    public static User checkLogin(User user) throws SQLException {
         try {
-            String mail = "";
-            String pass = "";
-            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM users;");
+            PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT userid, username, creditlimit FROM users where email=? and password=?");
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getPassword());
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-                mail = res.getString(1);
-                pass = res.getString(2);
-                if (mail.equals(user.getEmail()) && pass.equals(user.getPassword())) {
-                    System.out.println("Success");
-                    return new MessageFromDB(true, "Account Exist");
-                } else {
-                    System.out.println("Not Exist");
-                    return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
-                }
+                user.setUserId(res.getInt(1));
+                user.setName(res.getString(2));
+                user.setCreditLimit(res.getInt(3));
+                return user;
             }
         } catch (SQLException ex) {
-            System.err.println("error");
+            System.err.println("error : "+ex);
         }
-        DataHandling.closeConnection();
-        return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
+        user.setUserId(-1);
+        return user;
     }
 }
