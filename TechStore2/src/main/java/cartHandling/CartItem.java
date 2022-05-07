@@ -12,9 +12,19 @@ import database.Product;
  */
 public class CartItem extends Product {
 
-    public CartItem(Product p, int q) {
-        super(p.getProductid(), p.getProductname(), p.getDescription(), p.getPrice(), p.getCategory(), p.getBase64Image(), q);
+    private int prodq;
 
+    public void setProdq(int prodq) {
+        this.prodq = prodq;
+    }
+
+    public int getProdq() {
+        return prodq;
+    }
+
+    public CartItem(Product p, int q) {
+        super(p.getProductid(), p.getProductname(), p.getDescription(), p.getPrice(), p.getCategory(), p.getBase64Image(), p.getQuantity());
+        this.prodq = q;
     }
 
 }

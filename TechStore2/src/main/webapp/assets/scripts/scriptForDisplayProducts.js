@@ -11,8 +11,7 @@ window.onload = getProductsBasedOnUrl;
 
 
 function getProductsBasedOnUrl() {
-    var cartItems=$("#sessionInfo").val();
-     displayCart(cartItems)
+   
     loading();
     queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -152,7 +151,8 @@ var card = (data) => {
                            <!-- <span class="old-price">Was $939.00</span> -->
                         </div><!-- End .product-price -->
 
-                        <div class="product-action" onclick="addTocart(${data.productid})">
+                        <div class="product-action"  onclick="add(${data.productid})">
+                         
                             <a href="#" class="btn-product btn-cart"  ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .product-action -->
                     </div><!-- End .product-body -->
@@ -161,29 +161,7 @@ var card = (data) => {
     return x;
 }
 
-var cart_item = (data) => {
-    
-    let item = ` <div class="product" style="user-select: auto;height: fit-content;">
-                                        <div class="product-cart-details" style="user-select: auto;">
-                                            <h4 class="product-title" style="user-select: auto;">
-                                                <a href="quickView.jsp?id=${data.productid}" title="Quick view" style="user-select: auto;\">${data.productname}</a>
-                                            </h4>
-
-                                            <span class="cart-product-info" style="user-select: auto;">
-                                                <span class="cart-product-qty" style="user-select: auto;">${data.quantity}</span>
-                                                x ${data.price}
-                                            </span>
-                                        </div><!-- End .product-cart-details -->
-
-                                        <figure class="product-image-container" style="user-select: auto;">
-                                            <a href="quickView.jsp?id=${data.productid}" title="Quick view" class="product-image" style="user-select: auto;height: fit-content;">
-                                                <img src="data:image/gif;base64,${data.base64Image}" alt="product" style="user-select: auto;">
-                                            </a>
-                                        </figure>
-                                        <span  class="btn-remove" title="Remove Product" style="user-select: auto;" onclick="removeFromCart(${data.productid})"><i class="icon-close" style="user-select: auto;"></i></span>
-                                    </div><!-- End .product -->`;
-    return item;
-}
+  
 
 
 
@@ -194,46 +172,10 @@ function loading()
 
 } 
 
-function addTocart(x){
-    $("#contain-product").html("");
-         console.log(x);
-    $.post("/TechStore2/CartHandling",{cart_item:x,action:"add"},function(data){
-    console.log(JSON.parse(data));
-    displayCart(data);
+function add(x){
+    $.getScript("assets/scripts/cart.js",function(){
+               addTocart(x);
 });
-    
 }
 
-function removeFromCart(x){
-        $("#contain-product").html("");
-    $.post("/TechStore2/CartHandling",{cart_item:x,action:"remove"},function(data){
-    console.log(JSON.parse(data));
-          displayCart(data);
-    });
-    
-}
 
- function clearCart(x){
-         console.log(x)
-    $.post("/TechStore2/CartHandling",{cart_item:x,action:"clear"},function(data){
-  console.log(JSON.parse(data));
-    displayCart(data);
-    });
-    
-} 
-
-function displayCart(data){
-    
-    var arr=$.parseJSON(data);
-    var items_count=0;
-    var total_price=0;
-    //var x= $(arr).get(-1);
-    ////console.log(x.quantity);
-    $.each(arr,function(index, value){
-        $("#contain-product").append(cart_item(value));
-        items_count+=value.quantity;
-        total_price+=value.quantity*value.price;
-    });
-    $("#cart_count").html(items_count);
-    $("#total_price").html(total_price);
-    }

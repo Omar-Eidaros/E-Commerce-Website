@@ -12,10 +12,22 @@ import java.util.ArrayList;
  */
 public class Cart {
 
+    String message;
+
     private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
 
     public Cart() {
-        cartItems.clear();
+        this.cartItems.clear();
+    }
+
+    public Cart(String message, ArrayList<CartItem> c) {
+        this.message = message;
+        this.cartItems = c;
+    }
+
+    public Cart(ArrayList<CartItem> c) {
+
+        this.cartItems = c;
     }
 
     public ArrayList<CartItem> getCartItems() {
@@ -35,7 +47,7 @@ public class Cart {
     public void repeatedElementCart(int id) {
         for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
-                pr.setQuantity(pr.getQuantity() + 1);
+                pr.setProdq(pr.getProdq() + 1);
             }
 
         }
@@ -75,4 +87,9 @@ public class Cart {
         }
         return total;
     }
+
+    public int size() {
+        return this.cartItems.size();
+    }
+
 }

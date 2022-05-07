@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <%@ include file="header.jsp" %>
   <script type="text/javascript" src="assets/scripts/registerNewUser.js"></script>
+  
      <main class="main">
                 <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
                     <div class="container">

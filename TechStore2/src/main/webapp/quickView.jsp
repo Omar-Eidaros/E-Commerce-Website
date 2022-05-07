@@ -72,7 +72,7 @@
                                         </div> End .details-filter-row -->
 
                     <div class="product-details-action" onclick=<%=productid%>>
-                        <a href="#" class="btn-product btn-cart" ><span>add to cart</span></a>
+                        <a class="btn-product btn-cart" onclick="addCart(<%=productid%>)" ><span>add to cart</span></a>
                     </div>
 
                 </div>
@@ -80,5 +80,11 @@
         </div>
     </div>
 </main>
-
+                        <script>
+                            function addCart(x){
+                                $.getScript("assets/scripts/cart.js",function(){
+               addTocart(x);
+});
+                            }
+                        </script>
 <%@ include file="footer.jsp" %>

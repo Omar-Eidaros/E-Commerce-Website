@@ -1,17 +1,13 @@
+<%@page import="cartHandling.Cart"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="com.google.gson.GsonBuilder"%>
 <%@page import="cartHandling.CartItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="database.Product"%>
 <%@ include file="header.jsp" %>
-<%
-  
-ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
- GsonBuilder builder = new GsonBuilder();
-        Gson gson = builder.create();
- String ci=gson.toJson(items);
-%>
+
 <script type="text/javascript" src="assets/scripts/scriptForDisplayProducts.js"></script>
+
 
 <main class="main">
     <div class="intro-slider-container mb-4">
@@ -29,7 +25,6 @@ ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
                 <div class="container intro-content">
                     <h3 class="intro-subtitle text-primary">SEASONAL PICKS</h3><!-- End .h3 intro-subtitle -->
                     <h1 class="intro-title">Get All <br>The Good Stuff</h1><!-- End .intro-title -->
-                    <input type="hidden" id="sessionInfo" value=<%=ci%>>
                     <a href="category.html" class="btn btn-outline-primary-2">
                         <span>DISCOVER MORE</span>
                         <i class="icon-long-arrow-right"></i>
@@ -210,7 +205,7 @@ ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
             </div><!-- End .product-item -->
         </div><!-- End .products-container -->
     </div><!-- End .container -->
-
+ 
 </main><!-- End .main -->
 
 <%@ include file="footer.jsp" %>

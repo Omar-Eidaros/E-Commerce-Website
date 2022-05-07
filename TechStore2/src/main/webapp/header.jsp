@@ -4,10 +4,20 @@
     Author     : nora
 --%>
 
+<%@page import="com.google.gson.Gson"%>
+<%@page import="cartHandling.CartItem"%>
+<%@page import="com.google.gson.GsonBuilder"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<%
+  
+ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
+ GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+ String ci=gson.toJson(items);
+%>
 
 <!-- molla/index-11.html  22 Nov 2019 09:58:23 GMT -->
 <head>
@@ -40,9 +50,12 @@
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
     <link rel="stylesheet" href="assets/css/demos/demo-11.css">
     <link rel="stylesheet" href="/TechStore2/assets/css/register.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    
 </head>
 
 <body>
+     <input type="hidden" id="sessionInfo" value=<%=ci%>>
     <div class="page-wrapper">
         <header class="header ">
             <div class="header-middle sticky-header">
@@ -101,4 +114,13 @@
                 </div><!-- End .container -->
             </div><!-- End .header-middle -->
         </header><!-- End .header -->
-
+       <!-- comment -->
+       <script>
+         window.onload=load()
+         function load (){
+          $.getScript("assets/scripts/cart.js",function(){
+        var cartItems=$("#sessionInfo").val();
+        displayCart(JSON.parse(cartItems))
+    });}
+       </script>
+      
