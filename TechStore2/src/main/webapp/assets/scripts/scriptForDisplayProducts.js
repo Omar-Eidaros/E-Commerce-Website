@@ -11,9 +11,8 @@ window.onload = getProductsBasedOnUrl;
 
 
 function getProductsBasedOnUrl() {
-      $("#contain-product").html("");
     var cartItems=$("#sessionInfo").val();
-     displayCart(cartItems);
+     displayCart(cartItems)
     loading();
     queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -225,10 +224,11 @@ function removeFromCart(x){
 
 function displayCart(data){
     
-     var arr=$.parseJSON(data);
+    var arr=$.parseJSON(data);
     var items_count=0;
     var total_price=0;
-    
+    //var x= $(arr).get(-1);
+    ////console.log(x.quantity);
     $.each(arr,function(index, value){
         $("#contain-product").append(cart_item(value));
         items_count+=value.quantity;
