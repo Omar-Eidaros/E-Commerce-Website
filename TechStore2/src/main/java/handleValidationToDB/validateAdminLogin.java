@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,11 +33,17 @@ public class validateAdminLogin extends HttpServlet {
         account.setPassword(request.getParameter("singin-password"));
 
         try {
-            MessageFromDB ms = alh.checkAdminLogin(account);
-            if (ms.getStatus()) {
-                response.sendRedirect("admin/displayProducts.jsp");
+            account = alh.checkAdminLogin(account);
+            if (account.getAdminid() != -1) {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("isAdminAuth", "true");
+                session.setAttribute("adminId", account.getAdminid());
+                session.setAttribute("email", account.getEmail());
+                session.setAttribute("name", account.getAdminname());
+                out.print("t");
+                //response.sendRedirect("admin/displayProducts.jsp");
             } else {
-                response.sendRedirect("erroradminlogin.html");
+                out.print("f");
             }
         } catch (SQLException ex) {
         }
