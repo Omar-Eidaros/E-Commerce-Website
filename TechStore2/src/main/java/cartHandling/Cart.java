@@ -47,7 +47,12 @@ public class Cart {
     public void repeatedElementCart(int id) {
         for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
-                pr.setProdq(pr.getProdq() + 1);
+                if (pr.getProdq() + 1 <= pr.getQuantity()) {
+                    pr.setProdq(pr.getProdq() + 1);
+
+                } else {
+                    pr.setProdq(pr.getQuantity());
+                }
             }
 
         }
@@ -90,6 +95,21 @@ public class Cart {
 
     public int size() {
         return this.cartItems.size();
+    }
+
+    void decFromCart(int id) {
+        for (CartItem pr : this.cartItems) {
+            if (pr.getProductid() == id) {
+                if (pr.getProdq() - 1 > 0) {
+                    pr.setProdq(pr.getProdq() - 1);
+                    break;
+                } else {
+                    this.cartItems.remove(pr);
+                    break;
+                }
+            }
+
+        }
     }
 
 }

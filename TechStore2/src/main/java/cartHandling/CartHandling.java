@@ -83,13 +83,12 @@ public class CartHandling extends HttpServlet {
                 switch (action) {
                     //adding new item or increase quantity of existing one
                     case "add":
-                        CartItem ci = new CartItem(p, 1);
-                        if (items != null) {
-                            cartArr.setCartItems(items);
-                            if (cartArr.getTotalCost() + ci.getPrice() > cash) {
-                                System.err.println("exceeded balace");
-                                x.println(gson.toJson(new Cart("balance exceeded", cartArr.getCartItems())));
-                            } else {
+                        if (p.getQuantity() == 0) {
+                            x.println(gson.toJson(new Cart("out of stock", items)));
+                        } else {
+                            CartItem ci = new CartItem(p, 1);
+                            if (items != null) {
+                                cartArr.setCartItems(items);
                                 if (cartArr.checkExistance(ci.getProductid())) {
                                     cartArr.repeatedElementCart(ci.getProductid());
                                     x.println(gson.toJson(new Cart("increase quantity", cartArr.getCartItems())));
@@ -98,17 +97,19 @@ public class CartHandling extends HttpServlet {
                                     cartArr.addToCart(ci);
                                     x.println(gson.toJson(new Cart("added", cartArr.getCartItems())));
                                 }
+
+                            } else {
+
+                                cartArr.addToCart(ci);
+                                cartSesion.setAttribute("cartItems", cartArr.getCartItems());
+                                x.println(gson.toJson(new Cart("added", cartArr.getCartItems())));
+
                             }
-                        } else {
-
-                            cartArr.addToCart(ci);
-                            cartSesion.setAttribute("cartItems", cartArr.getCartItems());
-                            x.println(gson.toJson(new Cart("added", cartArr.getCartItems())));
-
                         }
 
                         break;
                     //remove item from cart
+
                     case "remove":
                         cartArr.setCartItems(items);
                         System.err.println("removed");
@@ -119,6 +120,13 @@ public class CartHandling extends HttpServlet {
                     case "clear":
                         cartArr.setCartItems(items);
                         cartArr.clearCart();
+                        break;
+                    //decrese quantity
+                    case "dec":
+                        cartArr.setCartItems(items);
+                        System.err.println("decreased");
+                        cartArr.decFromCart(Integer.valueOf(itemId));
+                        x.println(gson.toJson(new Cart("added", cartArr.getCartItems())));
                         break;
                 }
 

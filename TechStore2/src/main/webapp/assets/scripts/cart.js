@@ -41,7 +41,7 @@ function action(data){
     
    var arr=$.parseJSON(data);
      
-    if (arr.message=="balance exceeded"){
+    if (arr.message=="out of stock"){
         alert(arr.message)
         displayCart(arr.cartItems)
      }else{
@@ -60,11 +60,21 @@ function removeFromCart(x){
     
 }
 
- function clearCart(x){
-         console.log(x)
-    $.post("/TechStore2/CartHandling",{cart_item:x,action:"clear"},function(data){
-  console.log(JSON.parse(data)['MESSAGE']);
-    displayCart(data);
+function decreaseCart(x){
+        $("#contain-product").html("");
+    $.post("/TechStore2/CartHandling",{cart_item:x,action:"dec"},function(data){
+      var arr=$.parseJSON(data); 
+     displayCart(arr.cartItems)
+    })
+    
+}
+
+ function clearCart(){
+         console.log("hi")
+    $.post("/TechStore2/CartHandling",{action:"clear"},function(data){
+     $("#cart_count").html("0");
+    $("#total_price").html("0");
+    $("#contain-product").html("");
     });
     
 } 
@@ -72,8 +82,6 @@ function removeFromCart(x){
  function displayCart(data){   
     var items_count=0;
     var total_price=0;
-    //var x= $(arr).get(-1);
-    ////console.log(x.quantity);
     $.each(data,function(index, value){
         $("#contain-product").append(cart_item(value));
         items_count+=value.prodq;

@@ -153,7 +153,7 @@ var card = (data) => {
 
                         <div class="product-action"  onclick="add(${data.productid})">
                          
-                            <a href="#" class="btn-product btn-cart"  ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
+                            <a  class="btn-product btn-cart"  ><span >add to cart</span><i class="icon-long-arrow-right"></i></a>
                         </div><!-- End .product-action -->
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->

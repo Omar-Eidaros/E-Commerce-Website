@@ -40,8 +40,7 @@ public class validateUserLogin extends HttpServlet {
                 session.setAttribute("email", user.getEmail());
                 session.setAttribute("name", user.getName());
                 session.setAttribute("balance", user.getCreditLimit());
-                response.sendRedirect("cart.jsp");
-
+                response.sendRedirect("index.jsp");
 
             } else {
                 response.sendRedirect("login.jsp?isLogin=false");
