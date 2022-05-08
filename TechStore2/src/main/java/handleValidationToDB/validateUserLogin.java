@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import database.User;
-import database.userLoginHandling;
+import database.UserManager;
+
 import java.sql.SQLException;
 import javax.servlet.http.HttpSession;
 
@@ -31,7 +32,7 @@ public class validateUserLogin extends HttpServlet {
             account.setEmail(request.getParameter("singin-email"));
             account.setPassword(request.getParameter("singin-password"));
 
-            User user = userLoginHandling.checkLogin(account);
+            User user = UserManager.checkLogin(account);
 
             if (user.getUserId() != -1) {
                 HttpSession session = request.getSession(true);

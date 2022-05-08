@@ -86,9 +86,12 @@
         <servlet-name>UpdateQuantity</servlet-name>
         <servlet-class>cartHandling.UpdateQuantity</servlet-class>
 
+       
+
+    </servlet>
+      <servlet>
         <servlet-name>LogoutAdmin</servlet-name>
         <servlet-class>com.store.LogoutAdmin</servlet-class>
-
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -147,9 +150,12 @@
         <servlet-name>UpdateQuantity</servlet-name>
         <url-pattern>/UpdateQuantity</url-pattern>
 
+       
+
+    </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>LogoutAdmin</servlet-name>
         <url-pattern>/LogoutAdmin</url-pattern>
-
     </servlet-mapping>
     <session-config>
         <session-timeout>

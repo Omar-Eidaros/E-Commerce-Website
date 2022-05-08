@@ -107,4 +107,23 @@ public class UserManager {
         return -1;
     }
 
+    public static User checkLogin(User user) throws SQLException {
+        try {
+            PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT userid, username, creditlimit FROM users where email=? and password=?");
+            stmt.setString(1, user.getEmail());
+            stmt.setString(2, user.getPassword());
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                user.setUserId(res.getInt(1));
+                user.setName(res.getString(2));
+                user.setCreditLimit(res.getInt(3));
+                return user;
+            }
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        user.setUserId(-1);
+        return user;
+    }
+
 }

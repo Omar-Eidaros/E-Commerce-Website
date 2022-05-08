@@ -4,7 +4,8 @@
  */
 package database;
 
-import java.util.List;
+import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,9 +15,9 @@ public class Order {
 
     private int orderId;
     private int userId;
-    private List<Integer> productId;
-    private int totalprice; 
-    private String orderdate = "";
+    private ArrayList<Integer> orderItems;
+    private int totalprice;
+    private Date orderdate;
 
     public int getOrderId() {
         return orderId;
@@ -34,12 +35,12 @@ public class Order {
         this.userId = userId;
     }
 
-    public List<Integer> getProductId() {
-        return productId;
+    public ArrayList<Integer> getProductIds() {
+        return this.orderItems;
     }
 
-    public void setProductId(List<Integer> productId) {
-        this.productId = productId;
+    public void setProductIds(ArrayList<Integer> items) {
+        this.orderItems = items;
     }
 
     public int getTotalprice() {
@@ -50,15 +51,12 @@ public class Order {
         this.totalprice = totalprice;
     }
 
-    public String getOrderdate() {
-        return orderdate;
-    }
-
-    public void setOrderdate(String orderdate) {
+    public void setOrderdate(Date orderdate) {
         this.orderdate = orderdate;
     }
 
-    
-
+    public Date getOrderDate() {
+        return this.orderdate;
+    }
 
 }

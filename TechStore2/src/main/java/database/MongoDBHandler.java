@@ -9,7 +9,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
-import java.util.List;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
@@ -26,13 +25,13 @@ public class MongoDBHandler {
 
     public static void connectDB() {
 
-        // Creating a Mongo client 
+        // Creating a Mongo client
 //        MongoClient mongo = new MongoClient(dataBaseUrl, 27017);
         MongoClient mongoClient = new MongoClient(new MongoClientURI(dataBaseUrl));
 
         System.out.println("Connected to the database successfully");
 
-        // Accessing the database 
+        // Accessing the database
         database = mongoClient.getDatabase(dataBaseName);
 
         for (String name : database.listCollectionNames()) {
@@ -46,17 +45,17 @@ public class MongoDBHandler {
     public static void addNewOrder(Order order) {
         //Preparing a document
         Document document = new Document();
-        document.append("orderdate", order.getOrderdate());
+        document.append("orderdate", order.getOrderDate().toString());
         document.append("userId", order.getUserId());
         document.append("totalprice", order.getTotalprice());
-        document.append("productsId", order.getProductId());
+        document.append("productsId", order.getProductIds());
         //Inserting the document into the collection
         database.getCollection("orders").insertOne(document);
     }
 
-// get orders by userid 
-    public static List<Order> retriveAllOrders(int userId) {
-        List<Order> order = new ArrayList<Order>();
+// get orders by userid
+    public static ArrayList<Order> retriveAllOrders(int userId) {
+        ArrayList<Order> order = new ArrayList<Order>();
 
         BasicDBObject whereQuery = new BasicDBObject();
         whereQuery.put("userId", userId);
@@ -69,7 +68,7 @@ public class MongoDBHandler {
         return order;
     }
 
-// add review to database 
+// add review to database
     public static void addNewReview(Review review) {
         //Preparing a document
         Document document = new Document();
@@ -94,7 +93,7 @@ public class MongoDBHandler {
         return rating;
     }
 
-//db.createCollection("reviews",{validator: 
+//db.createCollection("reviews",{validator:
 //{ $jsonSchema: {bsonType: "object",required: [ "orderId","userId","productId","rating" ],
 //properties: {
 //orderId: {bsonType: "string",description: "must be a string and is required"},
@@ -104,7 +103,7 @@ public class MongoDBHandler {
 //}
 //}}
 //})
-//db.createCollection("orders",{validator: 
+//db.createCollection("orders",{validator:
 //{ $jsonSchema: {bsonType: "object",required: [ "orderdate","userId","productsId","totalprice" ],
 //properties: {
 //orderdate: {bsonType: "string",description: "must be a string and is required"},
