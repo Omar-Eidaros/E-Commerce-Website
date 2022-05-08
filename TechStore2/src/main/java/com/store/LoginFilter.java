@@ -52,12 +52,13 @@ public class LoginFilter implements Filter {
         } else {
             String loggedIn = (String) session.getAttribute("isAuth");
             System.out.println(loggedIn);
-            if (loggedIn == null || !loggedIn.equals("true")) {
+            if (loggedIn != null && loggedIn.equals("true")) {
                 //resHttp.sendError(777);               
-                resHttp.sendRedirect("login.jsp");
+                chain.doFilter(request, response);
 
             } else {
-                chain.doFilter(request, response);
+                resHttp.sendRedirect("login.jsp");
+
             }
         }
 

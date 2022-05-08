@@ -67,11 +67,13 @@ public class LoginFilterForAdmin implements Filter {
         } else {
             String loggedIn = (String) session.getAttribute("isAdminAuth");
             System.out.println(loggedIn);
-            if (loggedIn == null || !loggedIn.equals("true")) {
-                //resHttp.sendError(777);               
-                resHttp.sendRedirect("/TechStore2/admin/signin.html");
-            } else {
+            if (loggedIn != null && loggedIn.equals("true")) {
+                //resHttp.sendError(777);  
                 chain.doFilter(request, response);
+
+            } else {
+                resHttp.sendRedirect("/TechStore2/admin/signin.html");
+
             }
         }
 

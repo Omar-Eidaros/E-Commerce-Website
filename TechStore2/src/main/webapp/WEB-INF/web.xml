@@ -15,7 +15,7 @@
         <filter-name>LoginFilterForAdmin</filter-name>
         <url-pattern>/admin/addProduct.jsp</url-pattern>
         <url-pattern>/admin/dispalyUsers.jsp</url-pattern>
-        <url-pattern>/admin/dispalyProducts.jsp</url-pattern>
+        <url-pattern>/admin/displayProducts.jsp</url-pattern>
         <url-pattern>/admin/response.jsp</url-pattern>
         <url-pattern>/admin/signin.html</url-pattern>
 
