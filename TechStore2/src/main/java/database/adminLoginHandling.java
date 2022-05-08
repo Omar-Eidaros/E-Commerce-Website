@@ -15,25 +15,25 @@ import java.sql.SQLException;
  */
 public class adminLoginHandling {
 
-    private Connection connection = DataHandling.getConnection();
-
-    public MessageFromDB checkAdminLogin(Admin admin) throws SQLException {
+    public Admin checkAdminLogin(Admin admin) throws SQLException {
         try {
 
-            PreparedStatement stmt = connection.prepareStatement("SELECT email,password FROM admins where email=? and password = ?");
+            PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT adminid,adminname FROM admins where email=? and password = ?");
             stmt.setString(1, admin.getEmail());
             stmt.setString(2, admin.getPassword());
 
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
                 System.out.println("Success");
-                return new MessageFromDB(true, "Account Exist");
-
+                admin.setAdminid(res.getInt(1));
+                admin.setAdminname(res.getString(2));
+                return admin;
             }
         } catch (SQLException ex) {
             System.err.println("error");
         }
         System.out.println("Not Exist");
-        return new MessageFromDB(false, "Account doesnt Exist, Please Try Again");
+        admin.setAdminid(-1);
+        return admin;
     }
 }

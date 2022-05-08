@@ -76,7 +76,7 @@ ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
                             <i class="icon-bars"></i>
                         </button>
                         
-                        <a href="index.html" class="logo">
+                        <a href="index.jsp" class="logo">
                             <img src="assets/images/demos/demo-11/logo.png" alt="Molla Logo" width="82" height="25">
                         </a>
                     </div><!-- End .header-left -->

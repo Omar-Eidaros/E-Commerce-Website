@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>com.store.LoginFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>LoginFilterForAdmin</filter-name>
+        <filter-class>com.store.LoginFilterForAdmin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilterForAdmin</filter-name>
+        <url-pattern>/admin/addProduct.jsp</url-pattern>
+        <url-pattern>/admin/dispalyUsers.jsp</url-pattern>
+        <url-pattern>/admin/dispalyProducts.jsp</url-pattern>
+        <url-pattern>/admin/response.jsp</url-pattern>
+        <url-pattern>/admin/signin.html</url-pattern>
+
+    </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/reviews.jsp</url-pattern>
@@ -66,8 +82,13 @@
         <servlet-class>com.store.LogoutUser</servlet-class>
     </servlet>
     <servlet>
+
         <servlet-name>UpdateQuantity</servlet-name>
         <servlet-class>cartHandling.UpdateQuantity</servlet-class>
+
+        <servlet-name>LogoutAdmin</servlet-name>
+        <servlet-class>com.store.LogoutAdmin</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -122,8 +143,13 @@
         <url-pattern>/LogoutUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+
         <servlet-name>UpdateQuantity</servlet-name>
         <url-pattern>/UpdateQuantity</url-pattern>
+
+        <servlet-name>LogoutAdmin</servlet-name>
+        <url-pattern>/LogoutAdmin</url-pattern>
+
     </servlet-mapping>
     <session-config>
         <session-timeout>

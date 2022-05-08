@@ -29,6 +29,7 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
     </head>
 
     <body>
@@ -54,18 +55,19 @@
                                 <h3>Sign In</h3>
                             </div>
                             <form id="loginAdmin">
-                            <div class="form-floating mb-3">
-                                <input type="email" name="singin-email" required class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
-                            </div>
-                            <div class="form-floating mb-4">
-                                <input type="password" name="singin-password" class="form-control" id="floatingPassword" required placeholder="Password">
-                                <label for="floatingPassword">Password</label>
-                            </div>
-                                <div id="error-login"></div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" name="singin-email" required class="form-control" id="floatingInput" placeholder="name@example.com">
+                                    <label for="floatingInput">Email address</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" name="singin-password" class="form-control" id="floatingPassword" required placeholder="Password">
+                                    <label for="floatingPassword">Password</label>
+                                </div>
+                                <div style="COLOR: RED;TEXT-ALIGN: center;MARGIN-BOTTOM: 10PX;" id="error-login"></div>
+                                <input type="button" class="btn btn-primary py-3 w-100 mb-4" id="btnSearch" onclick="logto()" value="Sign In" />
 
-                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Sign In</button>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -86,6 +88,8 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script src="js/login.js"></script>
+
     </body>
 
 </html>
