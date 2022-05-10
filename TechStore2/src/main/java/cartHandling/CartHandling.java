@@ -71,7 +71,7 @@ public class CartHandling extends HttpServlet {
             processRequest(request, response);
             String itemId = request.getParameter("cart_item");
             String action = request.getParameter("action");
-            HttpSession cartSesion = request.getSession(false);
+            HttpSession cartSesion = request.getSession();
             productManaging pm = new productManaging();
 
             Product p = pm.getProductById(itemId);
