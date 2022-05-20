@@ -17,6 +17,18 @@ public class User {
     private String Email;
     private String Password;
     private Date BirthDate;
+
+    public User(int UserId, String Name, String Email, String Password, String Phone, int CreditLimit) {
+        this.UserId = UserId;
+        this.Name = Name;
+        this.Email = Email;
+        this.Password = Password;
+        this.Phone = Phone;
+        this.CreditLimit = CreditLimit;
+    }
+
+
+
     private String Phone;
     private String city;
     private String street;

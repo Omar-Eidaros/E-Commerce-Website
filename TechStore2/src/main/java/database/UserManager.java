@@ -13,6 +13,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -124,6 +126,20 @@ public class UserManager {
         }
         user.setUserId(-1);
         return user;
+    }
+
+    public static List<User> getAllUsers(){
+        List<User> users = new ArrayList<User>();
+        try {
+            PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT userid, username, email, password, phonenumber, creditlimit FROM users");
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                users.add(new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getInt(6)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return users;
     }
 
 }
