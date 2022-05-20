@@ -7,6 +7,7 @@ package database;
 
 import database.DataHandling;
 import database.MessageFromDB;
+
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * @author Salma
  */
 public class UserManager {
@@ -128,7 +128,7 @@ public class UserManager {
         return user;
     }
 
-    public static List<User> getAllUsers(){
+    public static List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
         try {
             PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT userid, username, email, password, phonenumber, creditlimit FROM users");
@@ -142,4 +142,32 @@ public class UserManager {
         return users;
     }
 
+    public static int deleteUser(int id) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("delete from Users where userid = ?");
+            stmt.setInt(1, id);
+            int res = stmt.executeUpdate();
+            return res;
+
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return 0;
+    }
+    public static int editUser(int creditlimt, int id ) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("update users set creditlimit= ? where userid = ?");
+            stmt.setInt(1, creditlimt);
+            stmt.setInt(2, id);
+            int res = stmt.executeUpdate();
+            return res;
+
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return 0;
+    }
 }
+
+
+

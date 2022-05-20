@@ -42,8 +42,13 @@
                             <td><%=user.getPassword()%></td>
                             <td><%=user.getPhone()%></td>
                             <td><%=user.getCreditLimit()%></td>
-                            <td> <button type="button" class="btn btn-danger rounded-pill m-2">Delete</button></td>
-                            <td> <button type="button" class="btn btn-info rounded-pill m-2">Edit</button></td>
+                            <td> <a href="handelDeleteUser?id=<%=user.getUserId()%>"> <button type="button" class="btn btn-danger rounded-pill m-2">Delete</button> </a> </td>
+                            <td> <form action="handelEditUser" method="post">
+                                <input type="hidden" value="<%=user.getUserId()%>" name="id"/>
+                                <input type="number"  name="creditlimit" required />
+
+
+                                <button type="button" class="btn btn-info rounded-pill m-2">Edit</button> </form></td>
                         </tr>
 
                         <% }%>
