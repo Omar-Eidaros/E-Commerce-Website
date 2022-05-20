@@ -16,7 +16,7 @@
 <div class="container-fluid pt-4 px-4">
     <div class="row bg-light  rounded align-items-center justify-content-center mx-0" id="display-search">
         <div class="bg-light rounded h-100 p-4">
-            <h6 class="mb-4">Responsive Table</h6>
+            <h6 class="mb-4">All Users</h6>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -42,13 +42,11 @@
                             <td><%=user.getPassword()%></td>
                             <td><%=user.getPhone()%></td>
                             <td><%=user.getCreditLimit()%></td>
-                            <td> <a href="handelDeleteUser?id=<%=user.getUserId()%>"> <button type="button" class="btn btn-danger rounded-pill m-2">Delete</button> </a> </td>
-                            <td> <form action="handelEditUser" method="post">
-                                <input type="hidden" value="<%=user.getUserId()%>" name="id"/>
-                                <input type="number"  name="creditlimit" required />
-
-
-                                <button type="button" class="btn btn-info rounded-pill m-2">Edit</button> </form></td>
+                            <td> <a href="/TechStore2/handelDeleteUser?id=<%=user.getUserId()%>"> <button type="button" class="btn btn-danger rounded-pill m-2">Delete</button> </a> </td>
+                            <td> <form action="/TechStore2/handelEditUser" method="post">
+                                    <input type="hidden" value="<%=user.getUserId()%>" name="id"/>
+                                    <input  class="form-control" type="number"  name="creditlimit" required />
+                                    <button type="sumbit" class="btn btn-info rounded-pill m-2">Edit</button> </form></td>
                         </tr>
 
                         <% }%>

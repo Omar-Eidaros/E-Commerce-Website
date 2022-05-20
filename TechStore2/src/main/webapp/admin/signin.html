@@ -64,7 +64,8 @@
                                     <label for="floatingPassword">Password</label>
                                 </div>
                                 <div style="COLOR: RED;TEXT-ALIGN: center;MARGIN-BOTTOM: 10PX;" id="error-login"></div>
-                                <input type="button" class="btn btn-primary py-3 w-100 mb-4" id="btnSearch" onclick="logto()" value="Sign In" />
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <!--<input type="sumbit" class="btn btn-primary py-3 w-100 mb-4" id="btnSearch" value="Sign In" />-->
 
                             </form>
 
@@ -74,6 +75,40 @@
             </div>
             <!-- Sign In End -->
         </div>
+
+        <script>
+
+
+            let form = document.getElementById("loginAdmin");
+
+
+            const  submitvalidation = (e) => {
+                e.preventDefault();
+                values = $("#loginAdmin").serialize();
+                $.ajax({
+                    url: '/TechStore2/validateAdminLogin',
+                    method: 'POST',
+                    data: values,
+                    success:
+                            function (resultText) {
+                                if (resultText[0] == "t") {
+                                    window.location.replace("http://localhost:8080/TechStore2/admin/displayProducts.jsp");
+                                } else {
+                                    document.getElementById("error-login").innerHTML = "wrong user name or password ";
+                                }
+                            },
+                    error: function (jqXHR, exception) {
+
+                    }
+                }
+                );
+            }
+
+            form.addEventListener("submit", submitvalidation);
+
+
+
+        </script>
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -88,7 +123,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
-        <script src="js/login.js"></script>
+        <!--<script src="js/login.js"></script>-->
 
     </body>
 
