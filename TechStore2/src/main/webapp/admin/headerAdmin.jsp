@@ -88,9 +88,9 @@
                         <a href="addProduct.jsp" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Add product</a>
 
                         <a href="dispalyUsers.jsp" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>All users</a>
-                        <a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>ADD user</a>
+                        <!--<a href="#" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>ADD user</a>-->
 
-                        <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Statistics</a>
+<!--                        <a href="#" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Statistics</a>-->
                         <!--<a href="#" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>-->
                         <!--                    <div class="nav-item dropdown">
                                                 <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>

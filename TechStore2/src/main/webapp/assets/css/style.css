@@ -8981,7 +8981,8 @@ button:focus{
     margin-top:5rem;
     flex-direction:column;
     align-items:normal;
-    margin-bottom:4rem
+    margin-bottom:4rem;
+    cursor: pointer;
 }
 .quickView-content .details-action-wrapper{
     margin-left:0;

@@ -7,15 +7,17 @@ package database;
 
 import database.DataHandling;
 import database.MessageFromDB;
+
 import java.sql.Array;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- *
  * @author Salma
  */
 public class UserManager {
@@ -126,4 +128,46 @@ public class UserManager {
         return user;
     }
 
+    public static List<User> getAllUsers() {
+        List<User> users = new ArrayList<User>();
+        try {
+            PreparedStatement stmt = DataHandling.getConnection().prepareStatement("SELECT userid, username, email, password, phonenumber, creditlimit FROM users");
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                users.add(new User(res.getInt(1), res.getString(2), res.getString(3), res.getString(4), res.getString(5), res.getInt(6)));
+            }
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return users;
+    }
+
+    public static int deleteUser(int id) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("delete from Users where userid = ?");
+            stmt.setInt(1, id);
+            int res = stmt.executeUpdate();
+            return res;
+
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return 0;
+    }
+    public static int editUser(int creditlimt, int id ) {
+        try {
+            PreparedStatement stmt = conn.prepareStatement("update users set creditlimit= ? where userid = ?");
+            stmt.setInt(1, creditlimt);
+            stmt.setInt(2, id);
+            int res = stmt.executeUpdate();
+            return res;
+
+        } catch (SQLException ex) {
+            System.err.println("error : " + ex);
+        }
+        return 0;
+    }
 }
+
+
+
