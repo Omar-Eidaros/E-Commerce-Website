@@ -11,7 +11,7 @@
 <%
     int id= (int)session.getAttribute("userId");
     User user=database.UserManager.getUserById(id);
-    System.out.println(user);
+    System.err.println(user);
 %>
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
