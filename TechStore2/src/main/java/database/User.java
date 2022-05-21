@@ -27,8 +27,6 @@ public class User {
         this.CreditLimit = CreditLimit;
     }
 
-
-
     private String Phone;
     private String city;
     private String street;
@@ -48,10 +46,10 @@ public class User {
         this.Intersets = null;
         this.Job = null;
         this.CreditLimit = 0;
-        
+
     }
 
-    public User(String Name, String Email, String Password, Date BirthDate, String Phone, String city,String street, String[] Intersets, String Job) {
+    public User(String Name, String Email, String Password, Date BirthDate, String Phone, String city, String street, String[] Intersets, String Job) {
         this.Name = Name;
         this.Email = Email;
         this.Password = Password;
@@ -66,6 +64,14 @@ public class User {
     public User(String Email, String Password) {
         this.Email = Email;
         this.Password = Password;
+    }
+
+    User(String name, String email, String phone, String city, String street) {
+        this.Name = name;
+        this.Email = email;
+        this.Phone = phone;
+        this.city = city;
+        this.street = street;
     }
 
     public String getCity() {
@@ -83,7 +89,6 @@ public class User {
     public void setStreet(String street) {
         this.street = street;
     }
-    
 
     public int getUserId() {
         return UserId;
@@ -132,8 +137,6 @@ public class User {
     public void setPhone(String phone) {
         this.Phone = phone;
     }
-
-  
 
     public String[] getIntersets() {
         return Intersets;

@@ -154,7 +154,8 @@ public class UserManager {
         }
         return 0;
     }
-    public static int editUser(int creditlimt, int id ) {
+
+    public static int editUser(int creditlimt, int id) {
         try {
             PreparedStatement stmt = conn.prepareStatement("update users set creditlimit= ? where userid = ?");
             stmt.setInt(1, creditlimt);
@@ -167,7 +168,29 @@ public class UserManager {
         }
         return 0;
     }
+
+    public static User getUserById(int id) {
+        User user = new User();
+        try {
+
+            PreparedStatement stmt = conn.prepareStatement("select username,email,phonenumber,(address).city,(address).street from users where userid=?");
+            stmt.setInt(1, id);
+            ResultSet res = stmt.executeQuery();
+            while (res.next()) {
+                user.setName(res.getString("username"));
+                user.setEmail(res.getString("email"));
+
+                user.setPhone(res.getString("phonenumber"));
+
+                user.setCity(res.getString("city"));
+                user.setStreet(res.getString("street"));
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return user;
+
+    }
+
 }
-
-
-

@@ -18,6 +18,7 @@ $("document").ready(function () {
 function getship(x) {
     shvalue = parseInt($("#" + x).val());
     var totalorder = shvalue +parseInt($("#subTotal").html());
+
     $("#total").html( totalorder);
 }
 

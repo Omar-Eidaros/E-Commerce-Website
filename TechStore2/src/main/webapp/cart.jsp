@@ -61,8 +61,10 @@
 
 	                				<table class="table table-summary">
 	                					<tbody>
+                                                                <form>
 	                						<tr class="summary-subtotal">
 	                							<td>Subtotal:</td>
+                                                                        <input type="hidden" name="sub" id="sub">
                                                                                 <td ><span>$</span><span id="subTotal">0</span></td>
 	                						</tr><!-- End .summary-subtotal -->
 	                						<tr class="summary-shipping">
@@ -83,8 +85,8 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="shipping" value="10" class="custom-control-input" onclick="getship(this.id)">
-														<label class="custom-control-label" for="standart-shipping">Standart:</label>
+                                                                                            <input type="radio" id="standart-shipping" name="shipping" value="10" class="custom-control-input" onclick="getship(this.id)" >
+														<label class="custom-control-label" for="standart-shipping">Standard:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
 	                							<td>$10.00</td>
@@ -93,26 +95,24 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="shipping" value="20" class="custom-control-input" onclick="getship(this.id)">
+                                                                                            <input type="radio" id="express-shipping" name="shipping" value="20" class="custom-control-input" onclick="getship(this.id)" >
 														<label class="custom-control-label" for="express-shipping">Express:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
 	                							<td>$20.00</td>
 	                						</tr><!-- End .summary-shipping-row -->
 
-	                						<tr class="summary-shipping-estimate">
-	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
-	                							<td>&nbsp;</td>
-	                						</tr><!-- End .summary-shipping-estimate -->
+	                						
 
 	                						<tr class="summary-total">
 	                							<td>Total:</td>
-                                                                                <td ><span>$</span><span id="total">0</span></td>
+                                                                                 <input type="hidden" name="total" id="tot">
+                                                                                <td ><span >$</span><span id="total">0</span></td>
 	                						</tr><!-- End .summary-total -->
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
 
-	                				<a href="Checkout.jsp" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
+                                                        <a href="#" id="check2" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
 	                			</div><!-- End .summary -->
 
 		            			<a href="index.jsp" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
@@ -122,6 +122,14 @@
                 </div><!-- End .cart -->
             </div><!-- End .page-content -->
         </main><!-- End .main -->
-        
+        <script>
+            $("#check2").on('click',function(){
+               
+                var total=$("#total").html();
+                var shipping=$('input[name="shipping"]:checked').val();
+          
+                 window.location = 'Checkout.jsp?total='+total+'&shipping='+shipping;
+            });
+        </script>
 
     <%@include file="footer.jsp" %>
