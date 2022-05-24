@@ -105,7 +105,8 @@
 
                                     <tbody>
                                         <% int sub = 0;
-                                        if(items == null) items = new ArrayList<CartItem>();
+                                        if(items == null) 
+                                         items = new ArrayList<CartItem>();
                                             for (CartItem cis : items) {%>
                                         <tr>
                                             <td><a href="quickView.jsp"><%=cis.getProductname()%></a></td>
