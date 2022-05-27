@@ -7,9 +7,16 @@ package database;
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCursor;
 import java.util.ArrayList;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
+import com.mongodb.client.model.BsonField;
+import java.util.Arrays;
+import java.util.List;
+import org.bson.BsonDocument;
+import org.bson.BsonString;
 import org.bson.Document;
 
 /**
@@ -70,27 +77,90 @@ public class MongoDBHandler {
 
 // add review to database
     public static void addNewReview(Review review) {
-        //Preparing a document
-        Document document = new Document();
-        document.append("orderId", review.getOrderId());
-        document.append("userId", review.getUserId());
-        document.append("productId", review.getProductId());
-        document.append("rating", review.getRating());
-        //Inserting the document into the collection
-        database.getCollection("reviews").insertOne(document);
+
+//        BasicDBObject whereQuery = new BasicDBObject();
+//        whereQuery.put("orderId", review.getOrderId());
+//        whereQuery.put("userId", review.getUserId());
+//        whereQuery.put("productId", review.getProductId());
+        BasicDBObject andQuery = new BasicDBObject();
+        List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+        obj.add(new BasicDBObject("orderId", review.getOrderId()));
+        obj.add(new BasicDBObject("userId", review.getUserId()));
+        obj.add(new BasicDBObject("productId", review.getProductId()));
+
+        andQuery.put("$and", obj);
+
+        MongoCursor<Document> cursor = database.getCollection("reviews").find(andQuery).iterator();
+
+        if (cursor.hasNext()) {
+            System.out.println(cursor.next());
+
+            BasicDBObject newDocument = new BasicDBObject();
+            newDocument.put("rating", review.getRating()); // (2)
+
+            BasicDBObject updateObject = new BasicDBObject();
+            updateObject.put("$set", newDocument); // (3)
+
+            database.getCollection("reviews").updateOne(andQuery, updateObject); // (4)
+
+        } else {
+
+            //Preparing a document
+            Document document = new Document();
+            document.append("orderId", review.getOrderId());
+            document.append("userId", review.getUserId());
+            document.append("productId", review.getProductId());
+            document.append("rating", review.getRating());
+            //Inserting the document into the collection
+            database.getCollection("reviews").insertOne(document);
+        }
     }
 
 // calculate review per product
-    public static int retriveRatingToOneProduct(int productId) {
-        int rating = 0;
-        BasicDBObject whereQuery = new BasicDBObject();
-        whereQuery.put("productId", productId);
-        MongoCursor<Document> cursor = database.getCollection("reviews").find(whereQuery).iterator();
-
-        while (cursor.hasNext()) {
-            System.out.println(cursor.next());
+    public static float retriveRatingToOneProduct(int productId) {
+        double rating = 0;
+        AggregateIterable<org.bson.Document> aggregate = database.getCollection("reviews").aggregate(
+                Arrays.asList(
+                        (Aggregates.match(new Document("productId", String.valueOf(productId)))),
+                        Aggregates.group("productId", new BsonField("averageRating", new BsonDocument("$avg", new BsonString("$rating"))))));
+        Document result = aggregate.first();
+        if (result != null) {
+            rating = result.getDouble("averageRating");
+            rating = (rating * 100) / 5;
         }
-        return rating;
+//        int rating = 0;
+//        BasicDBObject whereQuery = new BasicDBObject();
+//        whereQuery.put("productId", productId);
+//        MongoCursor<Document> cursor = database.getCollection("reviews").find(whereQuery).iterator();
+//
+//        while (cursor.hasNext()) {
+//            System.out.println(cursor.next().getInteger(cursor));
+//        }
+        return (float) rating;
+    }
+
+// calculate review per product
+    public static float retriveRatingOrderUserProduct(Review review) {
+        double rating = 0;
+        BasicDBObject andQuery = new BasicDBObject();
+        List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+        obj.add(new BasicDBObject("orderId", review.getOrderId()));
+        obj.add(new BasicDBObject("userId", review.getUserId()));
+        obj.add(new BasicDBObject("productId", review.getProductId()));
+
+        andQuery.put("$and", obj);
+
+        Document result = database.getCollection("reviews").find(andQuery).first();
+
+        if (result != null) {
+            //rating = result.getInteger("rating");
+//            System.out.println(result);
+            rating = result.getInteger("rating");
+//            System.out.println(result.getInteger("rating"));
+        }
+
+//        }
+        return (float) rating;
     }
 
 //db.createCollection("reviews",{validator:

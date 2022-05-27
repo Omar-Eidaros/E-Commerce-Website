@@ -58,9 +58,9 @@
 
                     <div class="ratings-container">
                         <div class="ratings">
-                            <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                            <div class="ratings-val" style="width: <%=product.getRating()%>%"></div><!-- End .ratings-val -->
                         </div><!-- End .ratings -->
-                        <span class="ratings-text" id="productRating">( 2 Reviews )</span>
+                        <!--<span class="ratings-text" id="productRating">( 2 Reviews )</span>-->
                     </div><!-- End .rating-container -->
 
                     <p class="product-txt" id="productDescription"><%=product.getDescription()%></p>
@@ -71,7 +71,7 @@
                                             </div> End .product-details-quantity 
                                         </div> End .details-filter-row -->
 
-                    <div class="product-details-action" onclick=<%=productid%>>
+                    <div class="product-details-action" onclick="addCart(<%=productid%>)">
                         <a class="btn-product btn-cart" onclick="addCart(<%=productid%>)" ><span>add to cart</span></a>
                     </div>
 
@@ -80,11 +80,15 @@
         </div>
     </div>
 </main>
-                        <script>
-                            function addCart(x){
-                                $.getScript("assets/scripts/cart.js",function(){
-               addTocart(x);
-});
-                            }
-                        </script>
+
 <%@ include file="footer.jsp" %>
+
+<script>
+    function addCart(x) {
+        $.getScript("assets/scripts/cart.js", function () {
+            addTocart(x);
+        });
+    }
+</script>
+
+<%@include file="footerBody.jsp" %>

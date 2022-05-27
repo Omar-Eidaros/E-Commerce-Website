@@ -6,6 +6,7 @@ package database;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +19,21 @@ public class Order {
     private ArrayList<Integer> orderItems;
     private int totalprice;
     private Date orderdate;
+    private List<Product> products;
+
+    public Order(int orderId, int totalprice, Date orderdate, List<Product> products) {
+        this.orderId = orderId;
+        this.totalprice = totalprice;
+        this.orderdate = orderdate;
+        this.products = products;
+    }
+
+    public Order(int userId, ArrayList<Integer> orderItems, int totalprice, Date orderdate) {
+        this.userId = userId;
+        this.orderItems = orderItems;
+        this.totalprice = totalprice;
+        this.orderdate = orderdate;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -57,6 +73,22 @@ public class Order {
 
     public Date getOrderDate() {
         return this.orderdate;
+    }
+
+    public ArrayList<Integer> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(ArrayList<Integer> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
 }

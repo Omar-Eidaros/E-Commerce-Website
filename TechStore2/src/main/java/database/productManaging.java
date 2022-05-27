@@ -223,16 +223,17 @@ public class productManaging {
             return new MessageFromDB(false, "please try again");
         }
     }
-   public Product getProductById(String id) throws SQLException {
-       
-          Product product = null;
+
+    public Product getProductById(String id) {
+
+        Product product = null;
         try {
 
-            PreparedStatement stmt = conn.prepareStatement("select * from products where productid="+Integer.valueOf(id));
+            PreparedStatement stmt = conn.prepareStatement("select * from products where productid=" + Integer.valueOf(id));
 
             ResultSet res = stmt.executeQuery();
             while (res.next()) {
-
+               float avgRating =  MongoDBHandler.retriveRatingToOneProduct(Integer.parseInt(id));
                 InputStream inputStream = res.getBinaryStream("image");
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
                 byte[] buffer = new byte[4096];
@@ -245,15 +246,14 @@ public class productManaging {
                 byte[] imageBytes = outputStream.toByteArray();
                 String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 
-                 product=new Product(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5), base64Image, res.getInt(7));
+                product = new Product(res.getInt(1), res.getString(2), res.getString(3), res.getInt(4), res.getString(5), base64Image, res.getInt(7),avgRating);
             }
 
         } catch (SQLException | IOException | NumberFormatException e) {
-            
+
             System.err.println(e);
         }
-        
-     
+
         return product;
     }
 }

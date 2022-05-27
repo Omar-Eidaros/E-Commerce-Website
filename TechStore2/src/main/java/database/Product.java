@@ -21,6 +21,7 @@ public class Product implements Serializable {
     protected InputStream image;
     private int quantity;
     protected String base64Image;
+    protected float rating;
 
     public Product(String productname, String description, int price, String category, InputStream image, int quantity) {
         this.productname = productname;
@@ -70,6 +71,17 @@ public class Product implements Serializable {
         this.base64Image = base64Image;
     }
 
+    public Product(int productid, String productname, String description, int price, String category, String base64Image, int quantity, float rating) {
+        this.productid = productid;
+        this.productname = productname;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.quantity = quantity;
+        this.base64Image = base64Image;
+        this.rating = rating;
+    }
+
     public int getProductid() {
         return productid;
     }
@@ -112,6 +124,14 @@ public class Product implements Serializable {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
 }

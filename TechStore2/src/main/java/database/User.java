@@ -18,6 +18,13 @@ public class User {
     private String Password;
     private Date BirthDate;
 
+    private String Phone;
+    private String city;
+    private String street;
+    private String[] Intersets;
+    private String Job;
+    private int CreditLimit;
+
     public User(int UserId, String Name, String Email, String Password, String Phone, int CreditLimit) {
         this.UserId = UserId;
         this.Name = Name;
@@ -26,13 +33,6 @@ public class User {
         this.Phone = Phone;
         this.CreditLimit = CreditLimit;
     }
-
-    private String Phone;
-    private String city;
-    private String street;
-    private String[] Intersets;
-    private String Job;
-    private int CreditLimit;
 
     public User() {
         this.UserId = 0;

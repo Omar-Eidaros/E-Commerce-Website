@@ -75,7 +75,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 													<div class="custom-control custom-radio">
-                                                                                                            <input type="radio" id="free-shipping" name="shipping" value="0" class="custom-control-input" onclick="getship(this.id)">
+                                                                                                            <input type="radio" id="free-shipping" name="shipping" value="0" class="custom-control-input" onclick="getship(this.id)"required>
 														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -85,7 +85,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-                                                                                            <input type="radio" id="standart-shipping" name="shipping" value="10" class="custom-control-input" onclick="getship(this.id)" >
+                                                                                            <input type="radio" id="standart-shipping" name="shipping" value="10" class="custom-control-input" onclick="getship(this.id)" required >
 														<label class="custom-control-label" for="standart-shipping">Standard:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -95,7 +95,7 @@
 	                						<tr class="summary-shipping-row">
 	                							<td>
 	                								<div class="custom-control custom-radio">
-                                                                                            <input type="radio" id="express-shipping" name="shipping" value="20" class="custom-control-input" onclick="getship(this.id)" >
+                                                                                            <input type="radio" id="express-shipping" name="shipping" value="20" class="custom-control-input" onclick="getship(this.id)" required>
 														<label class="custom-control-label" for="express-shipping">Express:</label>
 													</div><!-- End .custom-control -->
 	                							</td>
@@ -108,6 +108,7 @@
 	                							<td>Total:</td>
                                                                                  <input type="hidden" name="total" id="tot">
                                                                                 <td ><span >$</span><span id="total">0</span></td>
+                                                                              
 	                						</tr><!-- End .summary-total -->
 	                					</tbody>
 	                				</table><!-- End .table table-summary -->
@@ -126,10 +127,17 @@
             $("#check2").on('click',function(){
                
                 var total=$("#total").html();
-                var shipping=$('input[name="shipping"]:checked').val();
-          
-                 window.location = 'Checkout.jsp?total='+total+'&shipping='+shipping;
+                var shipping=0;
+                if ($('input[name="shipping"]:checked').length > 0) {
+                    shipping=$('input[name="shipping"]:checked').val();
+}
+            $.post("handlingCheckout",{orderPrice:total,shipping:shipping}, function(data, status){
+                console.log(data)
+                     window.location = 'Checkout.jsp';
+  });
+             
             });
         </script>
 
     <%@include file="footer.jsp" %>
+<%@include file="footerBody.jsp" %>

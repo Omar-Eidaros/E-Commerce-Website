@@ -18,11 +18,11 @@
         <url-pattern>/admin/displayProducts.jsp</url-pattern>
         <url-pattern>/admin/response.jsp</url-pattern>
         <url-pattern>/admin/signin.html</url-pattern>
-
     </filter-mapping>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/reviews.jsp</url-pattern>
+        <url-pattern>/Checkout.jsp</url-pattern>
     </filter-mapping>
     <listener>
         <description>ServletContextListener</description>
@@ -82,16 +82,24 @@
         <servlet-class>com.store.LogoutUser</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>UpdateQuantity</servlet-name>
         <servlet-class>cartHandling.UpdateQuantity</servlet-class>
-
-       
-
     </servlet>
-      <servlet>
+    <servlet>
         <servlet-name>LogoutAdmin</servlet-name>
         <servlet-class>com.store.LogoutAdmin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaceOrder</servlet-name>
+        <servlet-class>OrderHandling.PlaceOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>handlingCheckout</servlet-name>
+        <servlet-class>OrderHandling.handlingCheckout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>validateAddRating</servlet-name>
+        <servlet-class>reviewHandling.validateAddRating</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
@@ -146,16 +154,24 @@
         <url-pattern>/LogoutUser</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>UpdateQuantity</servlet-name>
         <url-pattern>/UpdateQuantity</url-pattern>
-
-       
-
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LogoutAdmin</servlet-name>
         <url-pattern>/LogoutAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaceOrder</servlet-name>
+        <url-pattern>/PlaceOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>handlingCheckout</servlet-name>
+        <url-pattern>/handlingCheckout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateAddRating</servlet-name>
+        <url-pattern>/validateAddRating</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
