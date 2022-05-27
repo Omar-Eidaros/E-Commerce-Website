@@ -75,6 +75,7 @@ public class PlaceOrder extends HttpServlet {
                 ses.setAttribute("cartItems", orderItems);
                 ses.setAttribute("totalprice", "0");
                 ses.setAttribute("shipping", "0");
+                //send message to user
                 out.print("okay");
             } else if (total == 0) {
                 out.print("nothing");

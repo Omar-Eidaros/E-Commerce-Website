@@ -153,7 +153,7 @@
                                 <div id="myModal" class="modal">
                              <div class="modal-dialog modal-notify modal-info" role="document" style="user-select: auto;height: 50%;">
                                  <!--Content-->
-                                 <div class="modal-content text-center" style="height: 70%; user-select: auto;">
+                                 <div class="modal-content text-center" style="height: 90%; user-select: auto;">
                                    <!--Header-->
                                    <div class="modal-header d-flex justify-content-center" style="user-select: auto;">
                                        <p id="messageh" class="heading" style="user-select: auto;color: #cd9b66;">Be always up to date</p>
