@@ -153,7 +153,7 @@
                                 <div id="myModal" class="modal">
                              <div class="modal-dialog modal-notify modal-info" role="document" style="user-select: auto;height: 50%;">
                                  <!--Content-->
-                                 <div class="modal-content text-center" style="height: 70%; user-select: auto;">
+                                 <div class="modal-content text-center" style="height: 90%; user-select: auto;">
                                    <!--Header-->
                                    <div class="modal-header d-flex justify-content-center" style="user-select: auto;">
                                        <p id="messageh" class="heading" style="user-select: auto;color: #cd9b66;">Be always up to date</p>
@@ -210,7 +210,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }};
   function checkStatus(data){
-      if(data==="okay"){
+      if(data=="okay"){
           $.getScript("assets/scripts/cart.js", function () {
         clearCart();
     });
@@ -220,7 +220,7 @@ window.onclick = function(event) {
           $("#total").html("$0");
           $("#total").html("$0");
            $("#stot").html("$0");
-      }else if(data==="notokay"){
+      }else if(data=="notokay"){
           modal.style.display = "block"; 
            $("#messageh").html("Order Can't be Completed ");
           $("#messageb").html("You dont have enough Credit");
