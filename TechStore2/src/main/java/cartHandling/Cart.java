@@ -97,7 +97,7 @@ public class Cart {
         return this.cartItems.size();
     }
 
-    void decFromCart(int id) {
+    public void decFromCart(int id) {
         for (CartItem pr : this.cartItems) {
             if (pr.getProductid() == id) {
                 if (pr.getProdq() - 1 > 0) {
@@ -112,4 +112,12 @@ public class Cart {
         }
     }
 
+    public static ArrayList<Integer> getItemsId(ArrayList<CartItem> cart) {
+
+        ArrayList<Integer> items = new ArrayList<>();
+        for (CartItem c : cart) {
+            items.add(c.getProductid());
+        }
+        return items;
+    }
 }

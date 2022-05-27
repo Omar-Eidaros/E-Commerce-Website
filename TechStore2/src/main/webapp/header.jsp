@@ -60,6 +60,8 @@ ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
     <link rel="stylesheet" href="assets/css/demos/demo-11.css">
     <link rel="stylesheet" href="/TechStore2/assets/css/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     
 </head>
@@ -133,20 +135,22 @@ ArrayList<CartItem>items=(ArrayList<CartItem>)session.getAttribute("cartItems");
         </header><!-- End .header -->
        <!-- comment -->
        <script>
-         window.onload=load()
+         window.onload=load();
          function load (){
           $.getScript("assets/scripts/cart.js",function(){
         var cartItems=$("#sessionInfo").val();
+        
         displayCart(JSON.parse(cartItems))
         
     });}
+
 function go (){
-    
-    
    var total=$("#total_price").html();
-   var shipping="";
-   window.location = 'Checkout.jsp?total='+total+'&shipping='+shipping;
-}
+     $.post("handlingCheckout",{orderPrice:total,shipping:'0'}, function(data, status){
+     window.location = 'Checkout.jsp';
+  });
+    }
+
 
        </script>
       

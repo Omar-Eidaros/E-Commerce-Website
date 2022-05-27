@@ -70,7 +70,7 @@ function decreaseCart(x){
 }
 
  function clearCart(){
-         console.log("hi")
+        
     $.post("/TechStore2/CartHandling",{action:"clear"},function(data){
      $("#cart_count").html("0");
     $("#total_price").html("0");

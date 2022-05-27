@@ -71,7 +71,7 @@
                                             </div> End .product-details-quantity 
                                         </div> End .details-filter-row -->
 
-                    <div class="product-details-action" onclick=<%=productid%>>
+                    <div class="product-details-action" onclick="addCart(<%=productid%>)">
                         <a class="btn-product btn-cart" onclick="addCart(<%=productid%>)" ><span>add to cart</span></a>
                     </div>
 

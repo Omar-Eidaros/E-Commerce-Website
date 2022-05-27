@@ -12,8 +12,14 @@
 
     int id = (int) session.getAttribute("userId");
     User user = database.UserManager.getUserById(id);
-    System.out.println(user);
-
+    String shipping=(String)session.getAttribute("shipping");
+    String total=(String)session.getAttribute("totalprice");
+    Double tot=0.0;
+   if (shipping.equalsIgnoreCase("notselected")){
+       tot=Double.valueOf(total);
+   }else{
+   tot=Double.valueOf(total)+Double.valueOf(shipping);
+   }
 %>
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -35,12 +41,9 @@
         <div class="checkout">
             <div class="container">
                 <div class="checkout-discount">
-                    <form action="#">
-
-
-                    </form>
+                    
                 </div><!-- End .checkout-discount -->
-                <form action="#">
+                <form >
                     <div class="row">
                         <div class="col-lg-9">
                             <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
@@ -102,27 +105,25 @@
                                             <th>Total</th>
                                         </tr>
                                     </thead>
-
-                                    <tbody>
-                                        <% int sub = 0;
+                                   <tbody>
+                                        <% 
                                         if(items == null) 
-                                         items = new ArrayList<CartItem>();
+                                         items = new ArrayList<>();
                                             for (CartItem cis : items) {%>
                                         <tr>
                                             <td><a href="quickView.jsp"><%=cis.getProductname()%></a></td>
                                             <td>$<%=cis.getPrice()%></td>
                                         </tr>
-                                        <%sub += cis.getPrice();
-                                                                                     }%>
+                                        <%}%>
 
                                         <tr class="summary-subtotal">
                                             <td>Subtotal:</td>
-                                            <td>$<%=sub%></td>
+                                            <td id="stot">$<%=total%></td>
                                         </tr><!-- End .summary-subtotal -->
                                         <tr>
                                             <td>Shipping:</td>
                                             <% String stype = "";
-                                                switch (request.getParameter("shipping")) {
+                                                switch (shipping) {
                                                     case "20":
                                                         stype = "Express";
                                                         break;
@@ -138,17 +139,52 @@
                                         </tr>
                                         <tr class="summary-total">
                                             <td>Total:</td>
-                                            <td>$<%=request.getParameter("total")%></td>
+                                            <td id="total">$<%=tot%></td>
                                         </tr><!-- End .summary-total -->
                                     </tbody>
                                 </table><!-- End .table table-summary -->
 
                                 <!-- End .accordion -->
 
-                                <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+                                <button type="button"  class="btn btn-outline-primary-2 btn-order btn-block" id="order">
                                     <span class="btn-text">Place Order</span>
                                     <span class="btn-hover-text">Proceed to Checkout</span>
                                 </button>
+                                <div id="myModal" class="modal">
+                             <div class="modal-dialog modal-notify modal-info" role="document" style="user-select: auto;height: 50%;">
+                                 <!--Content-->
+                                 <div class="modal-content text-center" style="height: 70%; user-select: auto;">
+                                   <!--Header-->
+                                   <div class="modal-header d-flex justify-content-center" style="user-select: auto;">
+                                       <p id="messageh" class="heading" style="user-select: auto;color: #cd9b66;">Be always up to date</p>
+                                   </div>
+
+                                   <!--Body-->
+                               <div class="row" style="user-select: auto;height: 56%;">
+                               <div class="col-3" style="user-select: auto;">
+                                 <p style="user-select: auto;"></p>
+                                 <p class="text-center" style="user-select: auto;"><i class="fa fa-shopping-cart fa-5x" style="user-select: auto;color: #e5ae6c;margin-top: 10%"></i></p>
+                               </div>
+
+                               <div class="col-9" style="user-select: auto;">
+                                   <p></p>
+                                   <p id="messageb" style="margin-top: 10%;">Do you need more time to make a purchase decision?</p>
+                                 
+                               </div>
+                             </div>
+
+                                   <!--Footer-->
+                                   <div class="modal-footer flex-center" style="align-items: end;user-select: auto;height: 32%;">
+                                     <a href="index.jsp" class="btn btn-outline-primary-2 btn-order btn-block" style="user-select: auto;"> <span class="btn-text" style="user-select: auto;">Continue Shopping</span> <span class="btn-hover-text" style="user-select: auto;">Continue Shopping</span></a>
+                                     <a href="cart.jsp" type="button" class="btn btn-outline-primary-2 btn-order btn-block" style="user-select: auto;"><span class="btn-text" style="user-select: auto;">View Cart</span><span class="btn-hover-text" style="user-select: auto;">View Cart</span></a>
+                                   </div>
+                                 </div>
+                                 <!--/.Content-->
+                               </div>
+                            
+                               </div>
+                              </div>
+
                             </div><!-- End .summary -->
                         </aside><!-- End .col-lg-3 -->
                     </div><!-- End .row -->
@@ -156,6 +192,45 @@
             </div><!-- End .container -->
         </div><!-- End .checkout -->
     </div><!-- End .page-content -->
+  
 </main><!-- End .main -->
+<script>
+     var modal = document.getElementById("myModal");
+      
+    $( "#order" ).click(function() {
+       
+   $.get("/TechStore2/PlaceOrder", function(data, status){
+   console.log(data);
+  checkStatus(data);
+  });
+});
 
+window.onclick = function(event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }};
+  function checkStatus(data){
+      if(data==="okay"){
+          $.getScript("assets/scripts/cart.js", function () {
+        clearCart();
+    });
+       modal.style.display = "block";   
+          $("#messageh").html("Order Done  Sucssefully ");
+          $("#messageb").html("An SMS will be sent shortly to your phone");
+          $("#total").html("$0");
+          $("#total").html("$0");
+           $("#stot").html("$0");
+      }else if(data==="notokay"){
+          modal.style.display = "block"; 
+           $("#messageh").html("Order Can't be Completed ");
+          $("#messageb").html("You dont have enough Credit");
+      }else{
+          
+           modal.style.display = "block"; 
+           $("#messageh").html("Order Can't be Completed ");
+          $("#messageb").html("You dont have items in cart");
+      }
+      
+  };
+</script>
 <%@include file="footer.jsp" %>
