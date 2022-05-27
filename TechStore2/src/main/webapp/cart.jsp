@@ -140,3 +140,4 @@
         </script>
 
     <%@include file="footer.jsp" %>
+<%@include file="footerBody.jsp" %>

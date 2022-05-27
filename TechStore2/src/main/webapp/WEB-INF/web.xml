@@ -97,6 +97,10 @@
         <servlet-name>handlingCheckout</servlet-name>
         <servlet-class>OrderHandling.handlingCheckout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>validateAddRating</servlet-name>
+        <servlet-class>reviewHandling.validateAddRating</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewServlet</servlet-name>
         <url-pattern>/NewServlet</url-pattern>
@@ -164,6 +168,10 @@
     <servlet-mapping>
         <servlet-name>handlingCheckout</servlet-name>
         <url-pattern>/handlingCheckout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>validateAddRating</servlet-name>
+        <url-pattern>/validateAddRating</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

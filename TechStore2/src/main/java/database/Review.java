@@ -18,6 +18,20 @@ public class Review {
     private String productId;
     private int rating;
 
+    public Review(String orderId, String userId, String productId, int rating) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.productId = productId;
+        this.rating = rating;
+    }
+
+
+    public Review(String orderId, String userId, String productId) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.productId = productId;
+    }
+
     public String getReviewId() {
         return reviewId;
     }

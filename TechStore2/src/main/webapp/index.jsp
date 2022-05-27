@@ -209,4 +209,5 @@
 </main><!-- End .main -->
 
 <%@ include file="footer.jsp" %>
+<%@include file="footerBody.jsp" %>
 <%--<jsp:include page="footer.jsp" />--%> 

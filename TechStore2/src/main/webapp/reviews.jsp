@@ -3,6 +3,10 @@
     Created on : Apr 27, 2022, 3:35:16 AM
     Author     : nora
 --%>
+<%@page import="database.Product"%>
+<%@page import="java.util.List"%>
+<%@page import="database.Order"%>
+<%@page import="reviewHandling.ReviewDB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -82,104 +86,31 @@
 <main class="main">
     <div class="container quickView-container">
         <div class="orders">
-            <div class="order">
-                <div class="order-date">Order Date 20-1-2020 </div>
-                <div class="review-products">
-                    <div class="review-product">
-                        <div class="media border p-3">
-                            <img src="assets/images/demos/demo-11/logo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-                            <div class="media-body">
-                                <h4>Category <small><i>title</i></small></h4>
-                                <p>discription.</p>
-                                <form>
-                                    <div class="rate">
-                                        <input type="hidden" name="productid" value="1">
-                                        <input type="hidden" name="orderid" value="1">
-                                        <label>rates: </label>
-                                        <input type="number" min="0" max="5" name="rates" />
-                                        <button type="submit" class="btn btn-primary" onclick="setRatingToProduct()">Rate</button>
-                                        <!--<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>-->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
 
-                    </div>
-
-                    <div class="review-product">
-                        <div class="media border p-3">
-                            <img src="assets/images/demos/demo-11/logo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-                            <div class="media-body">
-                                <h4>Category <small><i>title</i></small></h4>
-                                <p>discription.</p>
-                                <form>
-                                    <div class="rate">
-                                        <input type="hidden" name="productid" value="1">
-                                        <input type="hidden" name="orderid" value="1">
-                                        <label>rates: </label>
-                                        <input type="number" min="0" max="5" name="rates" />
-                                        <button type="submit" class="btn btn-primary ">Rate</button>
-                                        <!--<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>-->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-
-                    </div>
-                    <div class="review-product">
-                        <div class="media border p-3">
-                            <img src="assets/images/demos/demo-11/logo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-                            <div class="media-body">
-                                <h4>Category <small><i>title</i></small></h4>
-                                <p>discription.</p>
-                                <form>
-                                    <div class="rate">
-                                        <input type="hidden" name="productid" value="1">
-                                        <input type="hidden" name="orderid" value="1">
-                                        <label>rates: </label>
-                                        <input type="number" min="0" max="5" name="rates" />
-                                        <button type="submit" class="btn btn-primary">Rate</button>
-                                        <!--<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>-->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="total-order">Total order 100LE</div>
-            </div>
-
-
+            <%
+                int id = (int) session.getAttribute("userId");
+                List<Order> orders = ReviewDB.getAllOrdersPerUser(id);
+                for (Order o : orders) {
+            %>
 
             <div class="order">
-                <div class="order-date">Order Date 20-1-2020 </div>
+                <div class="order-date">Order Date <%=o.getOrderDate()%> </div>
                 <div class="review-products">
+                    <% for (Product p : o.getProducts()) {%>
                     <div class="review-product">
                         <div class="media border p-3">
-                            <img src="assets/images/demos/demo-11/logo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                            <img src="data:image/gif;base64,<%=p.getBase64Image()%>" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
                             <div class="media-body">
-                                <h4>Category <small><i>title</i></small></h4>
-                                <p>discription.</p>
-                                <form>
+                                <h4>Category <%= p.getCategory()%> <small><i><%= p.getProductname()%></i></small></h4>
+                                <p><%= p.getDescription()%>.</p>
+                                <form action="/TechStore2/validateAddRating" method="post">
                                     <div class="rate">
-                                        <input type="hidden" name="productid" value="1">
-                                        <input type="hidden" name="orderid" value="1">
+                                        <input type="hidden" name="productid" value="<%= p.getProductid()%>">
+                                        <input type="hidden" name="orderid" value="<%= o.getOrderId()%>">
+                                        <input type="hidden" name="userid" value="<%=id%>">
+
                                         <label>rates: </label>
-                                        <input type="number" min="0" max="5" name="rates" />
+                                        <input type="number" min="0" value="<%=p.getRating()%>" max="5" name="rates" required/>
                                         <button type="submit" class="btn btn-primary">Rate</button>
                                         <!--<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>-->
                                         <!--<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>-->
@@ -192,38 +123,53 @@
                         </div>
 
                     </div>
-
-
-                    <div class="review-product">
-                        <div class="media border p-3">
-                            <img src="assets/images/demos/demo-11/logo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-                            <div class="media-body">
-                                <h4>title <small><i>Category</i></small></h4>
-                                <p>discription.</p>
-                                <form>
-                                    <div class="rate">
-                                        <input type="hidden" name="productid" value="1">
-                                        <input type="hidden" name="orderid" value="1">
-                                        <label>rates: </label>
-                                        <input type="number" min="0" max="5"" name="rates" />
-                                        <button type="submit" class="btn btn-primary">Rate</button>
-                                        <!--<input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>-->
-                                        <!--<input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>-->
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                    <% }%>
                 </div>
-                <div class="total-order">Total order 100LE</div>
+                <div class="total-order">Total order <%= o.getTotalprice()%>LE</div>
             </div>
-
+            <% }%>
 
         </div>
     </div>
 </main>
 
 <%@ include file="footer.jsp" %>
+
+
+//
+//        <script>
+//
+//
+//            let form = document.getElementsByClassName("addReviewToOneProduct");
+//
+//
+//            const  submitvalidation = (e) => {
+//                e.preventDefault();
+//                values = $("#addReviewToOneProduct").serialize();
+//                $.ajax({
+//                    url: '/TechStore2/validateAddRating',
+//                    method: 'POST',
+//                    data: values,
+//                    success:
+//                            function (resultText) {
+//                                if (resultText[0] == "t") {
+//                                    alert("Done")
+//                                } else {
+//                                    alert("Error")
+//                                }
+//                            },
+//                    error: function (jqXHR, exception) {
+//
+//                    }
+//                }
+//                );
+//            }
+//
+//            form.addEventListener("submit", submitvalidation);
+//
+//
+//
+//        </script>
+
+
+<%@include file="footerBody.jsp" %>

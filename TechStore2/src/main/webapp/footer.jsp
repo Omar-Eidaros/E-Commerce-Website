@@ -74,8 +74,3 @@
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/demos/demo-11.js"></script>
-</body>
-
-
-<!-- molla/index-11.html  22 Nov 2019 09:58:42 GMT -->
-</html>

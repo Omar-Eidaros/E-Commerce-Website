@@ -234,3 +234,4 @@ window.onclick = function(event) {
   };
 </script>
 <%@include file="footer.jsp" %>
+<%@include file="footerBody.jsp" %>
