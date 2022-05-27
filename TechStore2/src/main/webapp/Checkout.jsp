@@ -210,7 +210,7 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }};
   function checkStatus(data){
-      if(data==="okay"){
+      if(data=="okay"){
           $.getScript("assets/scripts/cart.js", function () {
         clearCart();
     });
@@ -220,7 +220,7 @@ window.onclick = function(event) {
           $("#total").html("$0");
           $("#total").html("$0");
            $("#stot").html("$0");
-      }else if(data==="notokay"){
+      }else if(data=="notokay"){
           modal.style.display = "block"; 
            $("#messageh").html("Order Can't be Completed ");
           $("#messageb").html("You dont have enough Credit");

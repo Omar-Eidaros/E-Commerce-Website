@@ -66,7 +66,7 @@ public class PlaceOrder extends HttpServlet {
             long millis = System.currentTimeMillis();
             java.sql.Date orderDate = new java.sql.Date(millis);
             int total = Integer.valueOf(shipping) + Integer.valueOf(tot);
-            if (total <= balance) {
+            if (total <= balance && total != 0) {
                 UserManager.editUser(balance - total, id);
                 Order ordered = new Order(id, Cart.getItemsId(orderItems), total, orderDate);
                 OrderHandling.insertNewOrder(ordered);
